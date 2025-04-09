@@ -1,0 +1,39 @@
+.product-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.product-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.product-gallery {
+  flex: 1;
+  min-width: 300px;
+}
+
+.product-gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.product-details {
+  flex: 1;
+  min-width: 300px;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.product-description {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}

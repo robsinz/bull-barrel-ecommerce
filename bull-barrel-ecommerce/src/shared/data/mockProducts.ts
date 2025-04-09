@@ -1,10 +1,4 @@
-import {
-  Product,
-  ProductCategory,
-  ProductColor,
-  ProductImage,
-  ProductSize,
-} from '../product.types';
+import { Product, ProductCategory, ProductColor, ProductSize } from '../product.types';
 
 // Common colors
 const colors: ProductColor[] = [
@@ -35,13 +29,13 @@ export const mockProducts: Product[] = [
     images: [
       {
         id: 'tshirt-front',
-        src: '/images/tshirt-front.jpg',
+        src: 'https://placehold.co/600x400?text=T-Shirt+Front',
         alt: 'Bull & Barrel T-Shirt Front View',
         isDefault: true,
       },
       {
         id: 'tshirt-back',
-        src: '/images/tshirt-back.jpg',
+        src: 'https://placehold.co/600x400?text=T-Shirt+Back',
         alt: 'Bull & Barrel T-Shirt Back View',
       },
     ],
@@ -84,13 +78,13 @@ export const mockProducts: Product[] = [
     images: [
       {
         id: 'glencairn-front',
-        src: '/images/glencairn-front.jpg',
+        src: 'https://placehold.co/600x600?text=Glencairn+Glass',
         alt: 'Bull & Barrel Glencairn Glass',
         isDefault: true,
       },
       {
         id: 'glencairn-angle',
-        src: '/images/glencairn-angle.jpg',
+        src: 'https://placehold.co/600x600?text=Glencairn+Angle',
         alt: 'Bull & Barrel Glencairn Glass Angled View',
       },
     ],
@@ -118,13 +112,13 @@ export const mockProducts: Product[] = [
     images: [
       {
         id: 'whiskey-front',
-        src: '/images/whiskey-front.jpg',
+        src: 'https://placehold.co/600x600?text=Whiskey+Bottle',
         alt: 'Bull & Barrel Select Bourbon',
         isDefault: true,
       },
       {
         id: 'whiskey-detail',
-        src: '/images/whiskey-detail.jpg',
+        src: 'https://placehold.co/600x600?text=Whiskey+Detail',
         alt: 'Bull & Barrel Select Bourbon Detail',
       },
     ],
@@ -152,7 +146,7 @@ export const mockProducts: Product[] = [
     images: [
       {
         id: 'pin-front',
-        src: '/images/pin-front.jpg',
+        src: 'https://placehold.co/600x600?text=Enamel+Pin',
         alt: 'Bull & Barrel Enamel Pin',
         isDefault: true,
       },
