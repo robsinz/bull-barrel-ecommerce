@@ -15,14 +15,14 @@ function ProductPage() {
   );
 
   return (
-    <div className="poduct-page">
+    <div className="container-page">
       <h1>{selectedProduct.name}</h1>
-      <div className="poduct-content">
+      <div className="product-content">
         <div className="product-gallery">
           {/* ProductGallery component here */}
           <img src={selectedProduct.images[0].src} alt={selectedProduct.images[0].alt} />
         </div>
-        <div className="product-detials">
+        <div className="product-details">
           <p className="product-price">${selectedProduct.price.toFixed(2)}</p>
           <p className="product-description">{selectedProduct.description}</p>
           {selectedProduct.features && selectedProduct.features.length > 0 && (
@@ -46,6 +46,7 @@ function ProductPage() {
                 <button
                   key={color.id}
                   className={`color-option ${selectedColor === color.id ? 'selected' : ''}`}
+                  style={{ backgroundColor: color.value }}
                   onClick={() => setSelectedColor(color.id)}
                 >
                   {color.name}
