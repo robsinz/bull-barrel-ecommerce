@@ -1,5 +1,5 @@
 import { Product, ProductCategory, ProductColor, ProductSize } from '../product.types';
-
+import tshirtFrontImage from '../../assets/images/tshirtFrontImage.png';
 // Common colors
 const colors: ProductColor[] = [
   { id: 'black', name: 'Black', value: '#000000' },
@@ -29,7 +29,8 @@ export const mockProducts: Product[] = [
     images: [
       {
         id: 'tshirt-front',
-        src: 'https://placehold.co/600x400?text=T-Shirt+Front',
+        // src: 'https://placehold.co/600x400?text=T-Shirt+Front',
+        src: tshirtFrontImage,
         alt: 'Bull & Barrel T-Shirt Front View',
         isDefault: true,
       },
