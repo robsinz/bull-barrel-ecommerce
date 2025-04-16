@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { mockProducts } from '../../shared/data/mockProducts';
 import { Product } from '../../shared/product.types';
-// import { isLightColor } from '../../shared/utils/colorUtils';
 import './ProductPage.css';
+import ProductGallery from '../ProductGallery';
 
 function ProductPage() {
   // For now, displaying first product
@@ -44,8 +44,8 @@ function ProductPage() {
     <div className="product-page">
       <div className="product-content">
         <div className="product-gallery">
-          {/* ProductGallery component here */}
-          <img src={selectedProduct.images[0].src} alt={selectedProduct.images[0].alt} />
+          <ProductGallery images={selectedProduct.images} />
+          {/* <img src={selectedProduct.images[0].src} alt={selectedProduct.images[0].alt} /> */}
         </div>
 
         <div className="product-details">
