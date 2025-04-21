@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProductCatalog from './features/ProductCatalog';
 import ProductPage from './features/ProductPage';
 import './App.css';
-import ProductCatalog from './features/ProductCatalog';
 
 function App() {
   return (
-    <div className="App">
-      <ProductCatalog />
-      {/* <ProductPage /> */}
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<ProductCatalog />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

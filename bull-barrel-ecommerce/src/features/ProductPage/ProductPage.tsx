@@ -1,12 +1,19 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { mockProducts } from '../../shared/data/mockProducts';
 import { Product } from '../../shared/product.types';
 import './ProductPage.css';
 import ProductGallery from '../ProductGallery';
 
 function ProductPage() {
+  const { id } = useParams();
+
   // For now, displaying first product
-  const selectedProduct: Product = mockProducts[0];
+  const selectedProduct = mockProducts.find((product) => product.id === id);
+
+  if (!selectedProduct) {
+    return <div>Product not found</div>;
+  }
   const [selectedColor, setSelectedColor] = useState(
     selectedProduct.colors ? selectedProduct.colors[0].id : undefined
   );

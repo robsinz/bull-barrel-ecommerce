@@ -97,9 +97,42 @@ export const mockProducts: Product[] = [
 
   // Limited Edition Barrel Pick Whiskey
   {
-    id: 'bull-barrel-whiskey-pick',
+    id: 'bull-barrel-whiskey-pick-bourbon',
     name: 'Bull & Barrel Select Bourbon',
-    price: 79.99,
+    price: 120.0,
+    description:
+      'Limited edition barrel pick, selected exclusively by our whiskey experts. Notes of caramel, vanilla, and oak with a smooth finish.',
+    features: [
+      'Single barrel selection',
+      'Bottled at 110 proof',
+      'Aged 8 years',
+      'Limited availability',
+      'Exclusive to Bull & Barrel',
+    ],
+    category: ProductCategory.WHISKEY,
+    images: [
+      {
+        id: 'whiskey-front',
+        src: 'https://placehold.co/600x600?text=Whiskey+Bottle',
+        alt: 'Bull & Barrel Select Bourbon',
+        isDefault: true,
+      },
+      {
+        id: 'whiskey-detail',
+        src: 'https://placehold.co/600x600?text=Whiskey+Detail',
+        alt: 'Bull & Barrel Select Bourbon Detail',
+      },
+    ],
+    inventory: {
+      default: 12,
+    },
+    isLimited: true,
+    relatedProductIds: ['bull-barrel-glencairn', 'bull-barrel-coasters'],
+  },
+  {
+    id: 'bull-barrel-whiskey-pick-rye',
+    name: 'Bull & Barrel Select Rye',
+    price: 150.0,
     description:
       'Limited edition barrel pick, selected exclusively by our whiskey experts. Notes of caramel, vanilla, and oak with a smooth finish.',
     features: [
