@@ -90,7 +90,7 @@ export const mockProducts: Product[] = [
       },
     ],
     inventory: {
-      default: 75,
+      default: 3,
     },
     relatedProductIds: ['bull-barrel-whiskey-pick', 'bull-barrel-coasters'],
   },
