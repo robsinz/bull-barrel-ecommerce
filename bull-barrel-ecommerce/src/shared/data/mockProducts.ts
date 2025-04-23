@@ -124,7 +124,7 @@ export const mockProducts: Product[] = [
       },
     ],
     inventory: {
-      default: 12,
+      default: 0,
     },
     isLimited: true,
     relatedProductIds: ['bull-barrel-glencairn', 'bull-barrel-coasters'],

@@ -40,7 +40,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
 
   // Then wraps its children(everything wrapped in the App.tsx file) with the ProductContext.Provider,
   // but I use the wrapper function ProductProvider, to wrap the children
-  // making the value accessible to all nested components
+  // making the value object accessible to all nested components
 
   // passes the value to the actual ProductContext.Provider
   // Renders its children wrapped in the context provider

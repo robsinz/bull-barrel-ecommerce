@@ -22,7 +22,7 @@ function App() {
 export default App;
 
 /*
-BrowserRouter is the core compnent that enables client-side routing in this application.
+BrowserRouter is the core component that enables client-side routing in this application.
 - it wraps the entire application
 - crates a routing context that all nested routing components can access
 - listens for URL changes and updates the rendered components accordingly
@@ -44,7 +44,8 @@ Route - Defines a mapping between a URL path and a component
 Link component
  - this is what connects my navigation elements to the router:
     - it renders as an <a> tag in the HTML
-    - when clicked, it prevents the default browser navigation behavior
+    - when clicked, it prevents the default browser navigation behavior (full page reload)
+      * full page reload: browser makes  acompletely new HTTP request to the server for the URL in the href
     - instead, it updates the URL using the History API without a full page reload
     - React Router detects this URL change and renders the appropriate component
     (see ProductCatalog.tsx)

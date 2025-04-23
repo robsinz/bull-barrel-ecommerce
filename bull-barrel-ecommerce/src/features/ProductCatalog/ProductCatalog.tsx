@@ -1,6 +1,6 @@
-import { Product } from '../../shared/product.types';
-import { Link } from 'react-router-dom';
 import { useProducts } from '../../context/ProductContext';
+import { Link } from 'react-router-dom';
+import { Product } from '../../shared/product.types';
 import './ProductCatalog.css';
 
 function ProductCatalog() {
@@ -36,7 +36,9 @@ function ProductCatalog() {
                 <div className="product-card-footer">
                   <p className="product-card-price">${product.price.toFixed(2)}</p>
 
-                  {getInventoryCount(product) <= 5 ? (
+                  {getInventoryCount(product) === 0 ? (
+                    <div className="sold-out">Sold Out!</div>
+                  ) : getInventoryCount(product) <= 5 ? (
                     <div className="low-inventory">{`Only ${getInventoryCount(product)} available`}</div>
                   ) : (
                     <div className="low-inventory-placeholder"></div>
