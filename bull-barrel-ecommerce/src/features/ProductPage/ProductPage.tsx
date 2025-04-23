@@ -1,33 +1,38 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { mockProducts } from '../../shared/data/mockProducts';
-import { Product } from '../../shared/product.types';
-import './ProductPage.css';
+import { useProducts } from '../../context/ProductContext';
 import ProductGallery from '../ProductGallery';
+import './ProductPage.css';
 
 function ProductPage() {
   const { id } = useParams();
+  // the ":id" in the path is a URL parameter, which React Router makes available through the "usePrams" hook
 
-  // For now, displaying first product
-  const selectedProduct = mockProducts.find((product) => product.id === id);
+  const { getProductById } = useProducts();
+  const selectedProduct = getProductById(id || '');
+  // When a component calls useProducts(), it's accessing the value that was
+  // passed to ProductContext.Provider within your ProductProvider component.
+  // in this case I need to access only a specific product by id.
 
   if (!selectedProduct) {
     return <div>Product not found</div>;
   }
+
   const [selectedColor, setSelectedColor] = useState(
     selectedProduct.colors ? selectedProduct.colors[0].id : undefined
   );
+
   const [selectedSize, setSelectedSize] = useState(
     selectedProduct.sizes ? selectedProduct.sizes[0].id : undefined
   );
   const [quantity, setQuantity] = useState(1);
 
-  const decreaseQuantity = () => {
-    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
-  };
-
   const increaseQuantity = () => {
     setQuantity((prev) => prev + 1);
+  };
+
+  const decreaseQuantity = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
   };
 
   const handleAddToCart = () => {
@@ -52,7 +57,6 @@ function ProductPage() {
       <div className="product-content">
         <div className="product-gallery">
           <ProductGallery images={selectedProduct.images} />
-          {/* <img src={selectedProduct.images[0].src} alt={selectedProduct.images[0].alt} /> */}
         </div>
 
         <div className="product-details">

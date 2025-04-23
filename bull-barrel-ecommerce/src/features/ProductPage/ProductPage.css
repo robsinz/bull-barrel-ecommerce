@@ -16,7 +16,7 @@
 .product-gallery {
   flex: 1;
   min-width: 300px;
-  max-width: 50%;
+  max-width: 100%;
 }
 
 .product-gallery img {

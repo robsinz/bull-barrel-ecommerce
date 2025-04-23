@@ -78,6 +78,13 @@
   font-size: 0.8rem;
 }
 
+.low-inventory-placeholder {
+  visibility: hidden;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  height: 1.2em;
+}
+
 @media (max-width: 900px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
