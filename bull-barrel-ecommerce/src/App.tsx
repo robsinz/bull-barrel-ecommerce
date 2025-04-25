@@ -12,6 +12,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ProductCatalog />} />
             <Route path="/product/:id" element={<ProductPage />} />
+            {/* need to handle route for unknown routes. wild card here */}
           </Routes>
         </div>
       </ProductProvider>
