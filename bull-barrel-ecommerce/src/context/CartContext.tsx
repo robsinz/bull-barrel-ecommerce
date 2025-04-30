@@ -47,6 +47,33 @@ export const CartProvider = ({ children }: CartContextProps) => {
       }
     });
   };
+
+  const removeFromCart = (productId: string, color: string, size: string) => {
+    setCart((prevCart) => {
+      return prevCart.filter(
+        (item) => !(item.productId === productId && item.color === color && item.size === size)
+      );
+    });
+  };
+
+  const updateQuantity = (productId: string, color: string, size: string, newQuantity: number) => {
+    setCart((prevCart) => {
+      return prevCart.map((item) => {
+        if (item.productId === productId && item.color === color && item.size === size) {
+          return { ...item, quantity: newQuantity };
+        }
+        return item;
+      });
+    });
+  };
+
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  const getCartTotal = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
   // Return the provider with values
   return (
     <CartContext.Provider
@@ -59,7 +86,7 @@ export const CartProvider = ({ children }: CartContextProps) => {
         getCartTotal,
       }}
     >
-      {childeren}
+      {children}
     </CartContext.Provider>
   );
 };
