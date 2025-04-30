@@ -1,6 +1,6 @@
 import { Product } from '../product.types';
 
-// Checks if a specific color ans size combo is in stock
+// Checks if a specific color and size combo is in stock
 export const isInStock = (product: Product, colorId: string, sizeId: string): boolean => {
   // Create inventory key in the format 'color-size'
   const inventoryKey = `${colorId}-${sizeId}`;

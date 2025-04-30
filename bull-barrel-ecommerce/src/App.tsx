@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ProductProvider } from './context/ProductContext';
+import { CartProvider } from './context/CartContext';
 import ProductCatalog from './features/ProductCatalog';
 import ProductPage from './features/ProductPage';
 import './App.css';
@@ -8,13 +9,15 @@ function App() {
   return (
     <BrowserRouter>
       <ProductProvider>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<ProductCatalog />} />
-            <Route path="/product/:id" element={<ProductPage />} />
-            {/* need to handle route for unknown routes. wild card here */}
-          </Routes>
-        </div>
+        <CartProvider>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<ProductCatalog />} />
+              <Route path="/product/:id" element={<ProductPage />} />
+              {/* need to handle route for unknown routes. wild card here */}
+            </Routes>
+          </div>
+        </CartProvider>
       </ProductProvider>
     </BrowserRouter>
   );

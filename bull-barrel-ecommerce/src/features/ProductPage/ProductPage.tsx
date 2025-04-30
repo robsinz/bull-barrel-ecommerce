@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useProducts } from '../../context/ProductContext';
+import { useCart } from '../../context/CartContext';
 import ProductGallery from '../ProductGallery';
-import { isInStock, getInventoryCount, isColorAvailable } from '../../shared/utils/InventoryHelper';
+import { isInStock, isColorAvailable } from '../../shared/utils/InventoryHelper';
 import './ProductPage.css';
 
 function ProductPage() {
@@ -25,6 +26,10 @@ function ProductPage() {
     ? selectedProduct.colors.find((color) => isColorAvailable(selectedProduct, color.id)) ||
       selectedProduct.colors[0]
     : undefined;
+  // Check if the product has colors
+  // If so, try to find a color that has at least one size in stock(if the eval result of isColorAvailable = true)
+  // If no available color is found, defaulting to the first color
+  // If the product has no colors, setting defaultColor to undefined
 
   const [selectedColor, setSelectedColor] = useState(defaultColor ? defaultColor.id : undefined);
   // conditional state for the color:
@@ -35,6 +40,8 @@ function ProductPage() {
     selectedProduct.sizes && selectedProduct.sizes.length > 0 && selectedColor
       ? selectedProduct.sizes.filter((size) => isInStock(selectedProduct, selectedColor, size.id))
       : [];
+  // If the product has sizes and color is selected, filtering sizes to only those in stock for the selected color
+  // otherwise, setting availableSizes to an empty array
 
   const defaultSize =
     availableSizes.length > 0
@@ -42,27 +49,35 @@ function ProductPage() {
       : selectedProduct.sizes && selectedProduct.sizes.length > 0
         ? selectedProduct.sizes[0].id
         : undefined;
+  // If there are available sizes for the selected color, use the first one as default
+  // If there are no available sizes but the product has sizes(clothing), use the first size
+  // If the product has no sizes, setting defaultSize to undefined
 
   const [selectedSize, setSelectedSize] = useState(defaultSize);
   const [quantity, setQuantity] = useState(1);
+
+  const { addToCart } = useCart();
 
   // Updated selected Size when color changes to ensure valid combo
   useEffect(() => {
     if (selectedColor && selectedProduct.sizes && selectedProduct.sizes.length > 0) {
       const isSizeAvailable =
         selectedSize && isInStock(selectedProduct, selectedColor, selectedSize);
-
+      // If selectedSize exists and isInStock equals true
       if (!isSizeAvailable) {
         const availableSizes = selectedProduct.sizes.filter((size) =>
           isInStock(selectedProduct, selectedColor, size.id)
         );
-
+        // If isSizeAvailable is false, set availableSizes to be the truthy values of isInStock
         if (availableSizes.length > 0) {
           setSelectedSize(availableSizes[0].id);
         }
       }
     }
   }, [selectedColor, selectedProduct, selectedSize]);
+  // This effect runs when selectedColor, selectedProduct, or selectedSize changes
+  // It checks if the currently selected size is available with the newly selected color
+  // If not, it automatically selects the first available size for the color
 
   const increaseQuantity = () => {
     setQuantity((prev) => prev + 1);
@@ -73,6 +88,8 @@ function ProductPage() {
   };
 
   const handleAddToCart = () => {
+    if (!selectedProduct) return;
+
     const cartItem = {
       productId: selectedProduct.id,
       name: selectedProduct.name,
@@ -83,11 +100,9 @@ function ProductPage() {
       image: selectedProduct.images[0].src,
     };
 
+    addToCart(cartItem);
     console.log('Added to cart:', cartItem);
-
     alert(`Added ${quantity} ${selectedProduct.name} to cart!`);
-
-    // need to update cart state here
   };
   return (
     <div className="product-page">
