@@ -3,6 +3,7 @@ import { ProductProvider } from './context/ProductContext';
 import { CartProvider } from './context/CartContext';
 import ProductCatalog from './features/ProductCatalog';
 import ProductPage from './features/ProductPage';
+import CartPage from './features/CartPage';
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
             <Routes>
               <Route path="/" element={<ProductCatalog />} />
               <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/cart" element={<CartPage />} />
               {/* need to handle route for unknown routes. wild card here */}
             </Routes>
           </div>

@@ -1,0 +1,9 @@
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  /* grid-template-columns: 60px 1fr 40px 60px; */
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
