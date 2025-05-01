@@ -28,7 +28,6 @@ export const CartProvider = ({ children }: CartContextProps) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
   // Functions will be implemented here
-
   const addToCart = (item: CartItem) => {
     setCart((prevCart) => {
       const existingItemIndex = prevCart.findIndex(
@@ -74,6 +73,7 @@ export const CartProvider = ({ children }: CartContextProps) => {
   const getCartTotal = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
+
   // Return the provider with values
   return (
     <CartContext.Provider
