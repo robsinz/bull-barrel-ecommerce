@@ -111,7 +111,14 @@ function ProductPage() {
           <ProductGallery images={selectedProduct.images} />
         </div>
 
-        <div className="product-details">
+        <div
+          className={`product-details ${
+            (!selectedProduct.colors || selectedProduct.colors.length === 0) &&
+            (!selectedProduct.sizes || selectedProduct.sizes.length === 0)
+              ? 'no-options'
+              : ''
+          }`}
+        >
           <h1>{selectedProduct.name}</h1>
           <p className="product-price">${selectedProduct.price.toFixed(2)}</p>
           <p className="product-description">{selectedProduct.description}</p>
@@ -177,7 +184,7 @@ function ProductPage() {
               <button onClick={increaseQuantity}>+</button>
             </div>
           </div>
-          <div className="cart-container">
+          <div className="add-to-cart-container">
             <button onClick={handleAddToCart}>Add To Cart</button>
           </div>
         </div>

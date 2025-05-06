@@ -4,6 +4,7 @@ import { CartProvider } from './context/CartContext';
 import ProductCatalog from './features/ProductCatalog';
 import ProductPage from './features/ProductPage';
 import CartPage from './features/CartPage';
+import Header from './features/Header/Header';
 import './App.css';
 
 function App() {
@@ -12,8 +13,10 @@ function App() {
       <ProductProvider>
         <CartProvider>
           <div className="App">
+            <Header />
             <Routes>
               <Route path="/" element={<ProductCatalog />} />
+              <Route path="/shop" element={<ProductCatalog />} />
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
               {/* need to handle route for unknown routes. wild card here */}

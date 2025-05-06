@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import './Header.css';
 
 const Header = () => {
@@ -8,10 +9,10 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="container">
+      <div className="header-container">
         <div className="logo">
           <Link to="/">
-            <img src="/bNbIcon.png" alt="Bull & Barrel Logo" />
+            <img src="/BnBLogo.png" alt="Bull & Barrel Logo" />
           </Link>
         </div>
         <nav className="navigation">
@@ -20,7 +21,7 @@ const Header = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/products">Products</Link>
+              <Link to="/shop">Shop</Link>
             </li>
             <li>
               <Link to="/about">About</Link>
@@ -28,9 +29,9 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div className="cart-icon">
+        <div className="cart-container">
           <Link to="/cart">
-            <div className="cart-container">
+            <div className="cart-icon-container">
               <i className="fa fa-shopping-cart"></i>
               {itemCount > 0 && <span className="cart-count">{itemCount}</span>}
             </div>

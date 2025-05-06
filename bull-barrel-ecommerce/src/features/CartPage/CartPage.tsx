@@ -4,54 +4,15 @@ import './CartPage.css';
 
 import tshirtFrontImage from '../../assets/images/tshirtFrontImage.png';
 const CartPage = () => {
-  const { cart, addToCart, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart();
-
-  const testCart = [
-    {
-      productId: 't-shirt',
-      name: 'bull n barrel t shirt',
-      price: 29.99,
-      color: 'White',
-      size: 'M',
-      quantity: 2,
-      image: tshirtFrontImage,
-    },
-    {
-      productId: 't-shirt',
-      name: 'bull n barrel t shirt',
-      price: 29.99,
-      color: 'Black',
-      size: 'L',
-      quantity: 1,
-      image: tshirtFrontImage,
-    },
-    {
-      productId: 't-shirt',
-      name: 'bull n barrel t shirt',
-      price: 29.99,
-      color: 'Black',
-      size: 'L',
-      quantity: 1,
-      image: tshirtFrontImage,
-    },
-    {
-      productId: 't-shirt',
-      name: 'bull n barrel t shirt',
-      price: 29.99,
-      color: 'Black',
-      size: 'L',
-      quantity: 1,
-      image: tshirtFrontImage,
-    },
-  ];
+  const { cart, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart();
 
   return (
     <div className="main-cart-container">
       <h2 className="cart-title">Shopping Cart</h2>
       <div className="item-container">
-        {testCart.length > 0 ? (
+        {cart.length > 0 ? (
           <div className="cart-items">
-            {testCart.map((item) => (
+            {cart.map((item) => (
               <div key={item.productId} className="cart-item-grid">
                 <img src={item.image} alt={item.name} className="cart-item-image" />
                 <div className="product-details">
