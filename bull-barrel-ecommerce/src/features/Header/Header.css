@@ -29,7 +29,8 @@
 .navigation ul {
   display: flex;
   list-style: none;
-  justify-content: space-between;
+  gap: 22px;
+  align-items: center;
 }
 
 .navigation li {

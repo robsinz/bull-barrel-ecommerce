@@ -15,6 +15,7 @@ const Header = () => {
             <img src="/BnBLogo.png" alt="Bull & Barrel Logo" />
           </Link>
         </div>
+
         <nav className="navigation">
           <ul>
             <li>
@@ -26,17 +27,19 @@ const Header = () => {
             <li>
               <Link to="/about">About</Link>
             </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
+            <li className="cart-item">
+              <Link to="/cart">
+                <div className="cart-icon-container">
+                  <i className="fa fa-shopping-cart"></i>
+                  {itemCount > 0 && <span className="cart-count">{itemCount}</span>}
+                </div>
+              </Link>
+            </li>
           </ul>
         </nav>
-
-        <div className="cart-container">
-          <Link to="/cart">
-            <div className="cart-icon-container">
-              <i className="fa fa-shopping-cart"></i>
-              {itemCount > 0 && <span className="cart-count">{itemCount}</span>}
-            </div>
-          </Link>
-        </div>
       </div>
     </header>
   );
