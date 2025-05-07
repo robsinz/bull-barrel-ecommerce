@@ -55,7 +55,6 @@ function ProductPage() {
 
   const [selectedSize, setSelectedSize] = useState(defaultSize);
   const [quantity, setQuantity] = useState(1);
-
   const { addToCart } = useCart();
 
   // Updated selected Size when color changes to ensure valid combo
@@ -102,7 +101,6 @@ function ProductPage() {
 
     addToCart(cartItem);
     console.log('Added to cart:', cartItem);
-    alert(`Added ${quantity} ${selectedProduct.name} to cart!`);
   };
   return (
     <div className="product-page">

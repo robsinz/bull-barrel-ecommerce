@@ -1,8 +1,8 @@
 import { useProducts } from '../../context/ProductContext';
 import { useCart } from '../../context/CartContext';
 import './CartPage.css';
+import { useEffect } from 'react';
 
-import tshirtFrontImage from '../../assets/images/tshirtFrontImage.png';
 const CartPage = () => {
   const { cart, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart();
 

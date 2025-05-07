@@ -39,7 +39,11 @@ export const CartProvider = ({ children }: CartContextProps) => {
 
       if (existingItemIndex !== -1) {
         const updatedCart = [...prevCart];
-        updatedCart[existingItemIndex].quantity += item.quantity;
+        const currentQuantity = updatedCart[existingItemIndex].quantity;
+        updatedCart[existingItemIndex] = {
+          ...updatedCart[existingItemIndex],
+          quantity: currentQuantity + item.quantity,
+        };
         return updatedCart;
       } else {
         return [...prevCart, item];

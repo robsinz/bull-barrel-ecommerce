@@ -8,7 +8,11 @@
   background-color: rgb(31, 31, 31);
   color: white;
   z-index: 1000;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  transition: transform 0.3s ease;
+}
+
+.header--hidden {
+  transform: translateY(-100%);
 }
 
 .header-container {
@@ -86,12 +90,12 @@
 .cart-count {
   position: absolute;
   top: -8px;
-  right: -8px;
-  background-color: var(--red-color);
-  color: white;
+  right: 10px;
+  background-color: white;
+  color: var(--red-color);
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
