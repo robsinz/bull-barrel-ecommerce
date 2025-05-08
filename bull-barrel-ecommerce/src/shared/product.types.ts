@@ -21,10 +21,11 @@ export type ProductSize = {
 
 // Product category enum
 export enum ProductCategory {
+  ALL = 'all',
   APPAREL = 'apparel',
   DRINKWARE = 'drinkware',
-  ACCESSORIES = 'accessories',
   WHISKEY = 'whiskey',
+  ACCESSORIES = 'accessories',
 }
 
 // Main product interface

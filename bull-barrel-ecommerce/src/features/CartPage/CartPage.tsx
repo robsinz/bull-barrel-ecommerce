@@ -17,8 +17,12 @@ const CartPage = () => {
                 <img src={item.image} alt={item.name} className="cart-item-image" />
                 <div className="product-details">
                   <p className="item-name">{item.name}</p>
-                  {item.color && <p className="item-variant">Color: {item.color}</p>}
-                  {item.size && <p className="item-variant">Size: {item.size}</p>}
+                  {item.color && (
+                    <p className="item-variant">
+                      Color: {item.color[0].toUpperCase() + item.color.slice(1)}
+                    </p>
+                  )}
+                  {item.size && <p className="item-variant">Size: {item.size.toUpperCase()}</p>}
                 </div>
 
                 <div className="quantity-controls">

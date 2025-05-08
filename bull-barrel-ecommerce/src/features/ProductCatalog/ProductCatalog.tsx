@@ -1,6 +1,7 @@
-import { useProducts } from '../../context/ProductContext';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Product } from '../../shared/product.types';
+import { useProducts } from '../../context/ProductContext';
+import { Product, ProductCategory } from '../../shared/product.types';
 import './ProductCatalog.css';
 
 function ProductCatalog() {
@@ -14,12 +15,23 @@ function ProductCatalog() {
     const totalInventory = inventoryValues.reduce((sum, count) => sum + (count as number), 0);
     return totalInventory;
   };
+  const [category, setCategory] = useState<ProductCategory>(ProductCategory.ALL);
 
+  const handleCategory = (selectedCategory: ProductCategory) => {
+    setCategory(selectedCategory);
+  };
+
+  const filteredProducts = useMemo(() => {
+    return category === ProductCategory.ALL
+      ? products
+      : products.filter((product) => product.category === category);
+  }, [category, products]);
   return (
     <div className="product-catalog">
       <h1>Shop</h1>
+      <h2>Apparel | Drinkware | Whiskey</h2>
       <div className="product-grid">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <Link to={`/product/${product.id}`} key={product.id} className="product-card-link">
             {/* When a user clicks this link:
                   - The URL changes to /product/[the-product-id]
