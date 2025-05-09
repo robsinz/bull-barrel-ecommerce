@@ -7,23 +7,37 @@
 .product-catalog h1 {
   font-family: var(--heading-font);
   font-size: 2.5rem;
-  margin-bottom: 50px;
+  padding-bottom: 0;
   /* color: var(--red-color) */
   color: #800000;
   text-align: center;
 }
-.product-catalog h2 {
+.category-filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #800000;
+}
+.category-filters button {
+  background: none;
+  border: none;
   font-family: var(--thin-font);
   font-size: 1.1rem;
-  word-spacing: 1rem;
-  margin-bottom: 40px;
+  cursor: pointer;
   color: #800000;
-  text-align: center;
-  padding-bottom: 50px;
-  border-bottom: 1px solid #800000;
+  padding: 50px 30px;
+}
+.category-filters button.active {
+  color: #333;
+}
+.separator {
+  margin: 0 10px;
+  color: #ccc;
 }
 
 .product-grid {
+  margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
@@ -37,6 +51,7 @@
     transform 0.3s ease,
     box-shadow 0.3s ease;
   background-color: white;
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
 .product-card:hover {
@@ -125,4 +140,34 @@
   text-decoration: none;
   color: inherit;
   display: block;
+}
+
+.no-products-message {
+  text-align: center;
+  margin: 50px 0;
+  color: #666;
+}
+.reset-filters {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #800000;
+  color: white;
+  border: none;
+  border: 4px;
+  cursor: pointer;
+}
+
+.reset-filters:hover {
+  background-color: #600000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
