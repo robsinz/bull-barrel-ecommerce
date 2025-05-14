@@ -6,6 +6,7 @@ import './Header.css';
 
 const Header = () => {
   const [headerVisibile, setHeaderVisible] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const prevScrollY = useRef(0);
   const { cart } = useCart();
 
@@ -31,6 +32,14 @@ const Header = () => {
     };
   }, []);
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <header className={`header ${!headerVisibile ? 'header--hidden' : ''}`}>
       <div className="header-container">
@@ -40,22 +49,44 @@ const Header = () => {
           </Link>
         </div>
 
-        <nav className="navigation">
+        {/* Mobile-only cart that will show on small screens */}
+        <div className="mobile-cart">
+          <Link to="/cart">
+            <div className="cart-icon-container">
+              <i className="fa fa-shopping-cart"></i>
+              {itemCount > 0 && <span className="cart-count">{itemCount}</span>}
+            </div>
+          </Link>
+        </div>
+
+        <div className={`menu-icon ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+          <span></span>
+        </div>
+
+        <nav className={`navigation ${menuOpen ? 'open' : ''}`}>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" onClick={closeMenu}>
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="/shop">Shop</Link>
+              <Link to="/shop" onClick={closeMenu}>
+                Shop
+              </Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/about" onClick={closeMenu}>
+                About
+              </Link>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link to="/contact" onClick={closeMenu}>
+                Contact
+              </Link>
             </li>
-            <li className="cart-item">
-              <Link to="/cart">
+            <li className="desktop-cart-item">
+              <Link to="/cart" onClick={closeMenu}>
                 <div className="cart-icon-container">
                   <i className="fa fa-shopping-cart"></i>
                   {itemCount > 0 && <span className="cart-count">{itemCount}</span>}

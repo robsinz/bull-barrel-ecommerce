@@ -1,4 +1,4 @@
-/* Header.css */
+/* Header base styles */
 .header {
   position: fixed;
   top: 0;
@@ -24,12 +24,14 @@
   margin: 0 auto;
 }
 
+/* Logo styles */
 .logo img {
   width: 200px;
   padding-top: 8px;
   transform: rotate(-6deg);
 }
 
+/* Navigation styles - desktop */
 .navigation ul {
   display: flex;
   list-style: none;
@@ -59,6 +61,7 @@
   text-decoration: none;
 }
 
+/* Cart styles */
 .cart-container {
   display: flex;
   align-items: center;
@@ -102,24 +105,18 @@
   font-size: 0.8rem;
 }
 
-/* Menu toggle for mobile */
-.menu-toggle {
-  display: none;
-}
-
+/* Hamburger menu styles */
 .menu-icon {
-  display: none;
+  display: none; /* Hidden by default on desktop */
   cursor: pointer;
   padding: 10px;
   position: relative;
   z-index: 1010;
 }
 
-.menu-icon span,
-.menu-icon span::before,
-.menu-icon span::after {
-  display: block;
+.menu-icon span {
   position: relative;
+  display: block;
   width: 24px;
   height: 2px;
   background-color: white;
@@ -130,6 +127,10 @@
 .menu-icon span::after {
   content: '';
   position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
 }
 
 .menu-icon span::before {
@@ -140,55 +141,84 @@
   top: 6px;
 }
 
-/* Responsive styles */
+/* Open state styles for hamburger icon */
+.menu-icon.open span {
+  background-color: transparent;
+}
+
+.menu-icon.open span::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.menu-icon.open span::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+.mobile-cart {
+  display: none;
+}
+.desktop-cart-item {
+  display: block;
+}
+
+/* Responsive/Mobile styles */
 @media (max-width: 768px) {
+  /* Show hamburger menu on mobile */
   .menu-icon {
     display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
   }
 
+  .mobile-cart {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    z-index: 1020;
+  }
+
+  .desktop-cart-item {
+    display: none !important;
+  }
+
+  /* Mobile navigation styles */
   .navigation {
     position: fixed;
     top: 0;
     right: -100%;
     width: 70%;
     height: 100vh;
-    background-color: var(--primary-color);
+    background-color: rgb(31, 31, 31);
     transition: right 0.3s ease;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     z-index: 1000;
+  }
+
+  .navigation.open {
+    right: 0;
   }
 
   .navigation ul {
     flex-direction: column;
     align-items: center;
+    gap: 10px;
+    padding: 0;
   }
 
   .navigation li {
-    margin: var(--spacing-md) 0;
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;
   }
 
   .navigation a {
     font-size: 1.4rem;
-  }
-
-  /* Checkbox toggle mechanism for menu */
-  .menu-toggle:checked ~ .navigation {
-    right: 0;
-  }
-
-  .menu-toggle:checked ~ .menu-icon span {
-    background-color: transparent;
-  }
-
-  .menu-toggle:checked ~ .menu-icon span::before {
-    transform: rotate(45deg);
-    top: 0;
-  }
-
-  .menu-toggle:checked ~ .menu-icon span::after {
-    transform: rotate(-45deg);
-    top: 0;
+    padding: 15px 0;
+    display: block;
   }
 }
