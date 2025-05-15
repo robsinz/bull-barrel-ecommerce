@@ -25,20 +25,30 @@ const Header = () => {
     prevScrollY.current = currentScrollY;
   };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    const newMenuState = !menuOpen;
+    setMenuOpen(newMenuState);
+
+    if (newMenuState) {
+      document.documentElement.classList.add('no-scroll');
+    } else {
+      document.documentElement.classList.remove('no-scroll');
+    }
   };
 
   const closeMenu = () => {
     setMenuOpen(false);
+    document.documentElement.classList.remove('no-scroll');
   };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+
+      document.documentElement.classList.remove('no-scroll');
+    };
+  }, []);
 
   return (
     <header className={`header ${!headerVisibile ? 'header--hidden' : ''}`}>

@@ -163,20 +163,34 @@
   display: block;
 }
 
+html.no-scroll {
+  overflow-y: hidden !important;
+}
 /* Responsive/Mobile styles */
 @media (max-width: 768px) {
   /* Show hamburger menu on mobile */
+  .logo {
+    position: relative;
+    z-index: 1100;
+  }
+
+  .logo img {
+    width: 150px;
+    padding-top: 16px;
+    transform: rotate(-6deg);
+  }
+
   .menu-icon {
     display: block;
     position: absolute;
-    top: 20px;
+    top: 40px;
     right: 20px;
   }
 
   .mobile-cart {
     display: block;
     position: absolute;
-    top: 20px;
+    top: 40px;
     right: 60px;
     z-index: 1020;
   }
@@ -190,7 +204,7 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: 70%;
+    width: 100%;
     height: 100vh;
     background-color: rgb(31, 31, 31);
     transition: right 0.3s ease;
@@ -208,6 +222,7 @@
     align-items: center;
     gap: 10px;
     padding: 0;
+    margin-top: 250px;
   }
 
   .navigation li {
@@ -217,7 +232,7 @@
   }
 
   .navigation a {
-    font-size: 1.4rem;
+    font-size: 2.2rem;
     padding: 15px 0;
     display: block;
   }
