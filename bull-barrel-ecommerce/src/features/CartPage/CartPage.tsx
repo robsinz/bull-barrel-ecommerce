@@ -1,7 +1,7 @@
 import { useProducts } from '../../context/ProductContext';
+import { useEffect } from 'react';
 import { useCart } from '../../context/CartContext';
 import './CartPage.css';
-import { useEffect } from 'react';
 
 const CartPage = () => {
   const { cart, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart();

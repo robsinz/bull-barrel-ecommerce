@@ -1,6 +1,6 @@
 .product-catalog {
   max-width: 1400px;
-  margin: 220px auto 40px;
+  margin: 200px auto 40px;
   padding: 0 20px;
 }
 
@@ -23,10 +23,13 @@
   background: none;
   border: none;
   font-family: var(--thin-font);
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
   color: #800000;
-  padding: 50px 30px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 20px;
+  padding-bottom: 50px;
 }
 .category-filters button.active {
   color: #333;
@@ -34,6 +37,8 @@
 .separator {
   margin: 0 10px;
   color: #ccc;
+  padding-bottom: 50px;
+  padding-top: 20px;
 }
 
 .product-grid {
@@ -123,6 +128,27 @@
 @media (max-width: 900px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .category-filters {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #800000;
+  }
+
+  .category-filters button {
+    background: none;
+    border: none;
+    font-family: var(--thin-font);
+    font-size: 1rem;
+    cursor: pointer;
+    color: #800000;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 20px;
+    padding-bottom: 50px;
   }
 }
 
