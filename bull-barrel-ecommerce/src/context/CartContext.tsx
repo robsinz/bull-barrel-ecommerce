@@ -9,14 +9,22 @@ export interface CartItem {
   image: string;
 }
 
+interface UpdateQuantityParams {
+  productId: string;
+  color?: string;
+  size?: string;
+  quantity: number;
+}
+
 interface CartContextType {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
-  removeFromCart: (productId: string, color: string, size: string) => void;
-  updateQuantity: (productId: string, color: string, size: string, quantity: number) => void;
+  removeFromCart: (productId: string, color?: string, size?: string) => void;
+  updateQuantity: (params: UpdateQuantityParams) => void;
   clearCart: () => void;
   getCartTotal: () => number;
 }
+
 interface CartContextProps {
   children: ReactNode;
 }
@@ -27,14 +35,13 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: CartContextProps) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  // Functions will be implemented here
   const addToCart = (item: CartItem) => {
     setCart((prevCart) => {
       const existingItemIndex = prevCart.findIndex(
         (cartItem) =>
           cartItem.productId === item.productId &&
-          cartItem.color === item.color &&
-          cartItem.size === item.size
+          (cartItem.color === item.color || cartItem.color === undefined) &&
+          (cartItem.size === item.size || cartItem.size === undefined)
       );
 
       if (existingItemIndex !== -1) {
@@ -51,7 +58,11 @@ export const CartProvider = ({ children }: CartContextProps) => {
     });
   };
 
-  const removeFromCart = (productId: string, color: string, size: string) => {
+  const removeFromCart = (
+    productId: string,
+    color: string | undefined,
+    size: string | undefined
+  ) => {
     setCart((prevCart) => {
       return prevCart.filter(
         (item) => !(item.productId === productId && item.color === color && item.size === size)
@@ -59,11 +70,12 @@ export const CartProvider = ({ children }: CartContextProps) => {
     });
   };
 
-  const updateQuantity = (productId: string, color: string, size: string, newQuantity: number) => {
+  const updateQuantity = (params: UpdateQuantityParams) => {
+    const { productId, color, size, quantity } = params;
     setCart((prevCart) => {
       return prevCart.map((item) => {
         if (item.productId === productId && item.color === color && item.size === size) {
-          return { ...item, quantity: newQuantity };
+          return { ...item, quantity };
         }
         return item;
       });

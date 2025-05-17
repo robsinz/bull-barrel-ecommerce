@@ -55,6 +55,7 @@ function ProductPage() {
 
   const [selectedSize, setSelectedSize] = useState(defaultSize);
   const [quantity, setQuantity] = useState(1);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
   const { addToCart } = useCart();
 
   // Updated selected Size when color changes to ensure valid combo
@@ -100,6 +101,12 @@ function ProductPage() {
     };
 
     addToCart(cartItem);
+    setIsAddedToCart(true);
+
+    setTimeout(() => {
+      setIsAddedToCart(false);
+    }, 1000);
+
     console.log('Added to cart:', cartItem);
   };
   return (
@@ -183,7 +190,9 @@ function ProductPage() {
             </div>
           </div>
           <div className="add-to-cart-container">
-            <button onClick={handleAddToCart}>Add To Cart</button>
+            <button onClick={handleAddToCart} className={isAddedToCart ? 'added' : ''}>
+              {isAddedToCart ? 'Adding to Cart!' : 'Add To Cart'}
+            </button>
           </div>
         </div>
       </div>

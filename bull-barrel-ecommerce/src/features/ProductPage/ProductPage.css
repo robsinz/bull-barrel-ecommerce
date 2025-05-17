@@ -230,7 +230,9 @@
   cursor: pointer;
   width: 100%;
   margin-top: 1rem;
-  transition: background-color 0.3s;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
 }
 
 .add-to-cart-container button:hover {
@@ -247,6 +249,10 @@
   background-color: #ccc;
 }
 
+.add-to-cart-container button.added {
+  background-color: #800000;
+  transform: scale(1.05);
+}
 .inventory-warning {
   color: #e74c3c;
   font-weight: 500;

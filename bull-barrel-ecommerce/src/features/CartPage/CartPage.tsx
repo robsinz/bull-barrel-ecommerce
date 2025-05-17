@@ -28,12 +28,12 @@ const CartPage = () => {
                 <div className="quantity-controls">
                   <button
                     onClick={() =>
-                      updateQuantity(
-                        item.productId,
-                        item.color || '',
-                        item.size || '',
-                        item.quantity - 1
-                      )
+                      updateQuantity({
+                        productId: item.productId,
+                        color: item.color,
+                        size: item.size,
+                        quantity: item.quantity - 1,
+                      })
                     }
                     disabled={item.quantity <= 1}
                   >
@@ -42,12 +42,12 @@ const CartPage = () => {
                   <span>{item.quantity}</span>
                   <button
                     onClick={() =>
-                      updateQuantity(
-                        item.productId,
-                        item.color || '',
-                        item.size || '',
-                        item.quantity + 1
-                      )
+                      updateQuantity({
+                        productId: item.productId,
+                        color: item.color,
+                        size: item.size,
+                        quantity: item.quantity + 1,
+                      })
                     }
                   >
                     +
@@ -59,7 +59,11 @@ const CartPage = () => {
                   <button
                     className="remove-button"
                     onClick={() =>
-                      removeFromCart(item.productId, item.color || '', item.size || '')
+                      removeFromCart(
+                        item.productId,
+                        item.color || undefined,
+                        item.size || undefined
+                      )
                     }
                   >
                     X
@@ -69,7 +73,7 @@ const CartPage = () => {
             ))}
           </div>
         ) : (
-          <div className="empty-cart">
+          <div className="no-items-message">
             <p>Your cart is empty.</p>
           </div>
         )}
@@ -79,7 +83,7 @@ const CartPage = () => {
           <p className="subtotal-label">Subtotal:</p>
           <p className="subtotal-amount">${getCartTotal().toFixed(2)}</p>
         </div>
-        <button className="checkout-button" onClick={() => console.log('you checked out')}>
+        <button className="checkout-button" onClick={() => alert('you checked out')}>
           CHECKOUT
         </button>
       </div>

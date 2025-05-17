@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+.no-items-message p {
+  font-size: 18px;
+}
+
 .cart-title {
   font-family: var(--heading-font);
   font-size: 1.6rem;
