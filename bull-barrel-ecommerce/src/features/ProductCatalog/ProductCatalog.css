@@ -84,8 +84,8 @@
 
 .product-card-name {
   font-size: 1.2rem;
-  margin-bottom: 10px;
   font-weight: 600;
+  margin: 0;
 }
 
 .product-card-footer {
@@ -93,12 +93,14 @@
   justify-content: space-between;
   align-items: center;
   height: 40px;
+  padding-top: 0;
 }
 
 .product-card-price {
   font-size: 1.1rem;
   color: #333;
   margin: 0;
+  padding: 0;
 }
 
 .sold-out {

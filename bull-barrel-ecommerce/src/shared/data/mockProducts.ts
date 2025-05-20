@@ -1,5 +1,8 @@
 import { Product, ProductCategory, ProductColor, ProductSize } from '../product.types';
 import tshirtFrontImage from '../../assets/images/tshirtFrontImage.png';
+import pin from '../../assets/images/pin.jpg';
+import bullandbarrelPoster from '../../assets/images/bullandbarrelPoster.png';
+
 // Common colors
 const colors: ProductColor[] = [
   { id: 'black', name: 'Black', value: '#000000' },
@@ -29,7 +32,6 @@ export const mockProducts: Product[] = [
     images: [
       {
         id: 'tshirt-front',
-        // src: 'https://placehold.co/600x400?text=T-Shirt+Front',
         src: tshirtFrontImage,
         alt: 'Bull & Barrel T-Shirt Front View',
         isDefault: true,
@@ -62,6 +64,58 @@ export const mockProducts: Product[] = [
     relatedProductIds: ['bull-barrel-hat', 'bull-barrel-glencairn'],
   },
 
+  // Enamel Pin
+  {
+    id: 'bull-barrel-pin',
+    name: 'Bull & Barrel Enamel Pin',
+    price: 9.99,
+    description:
+      'Collectible hard enamel pin featuring our iconic Bull & Barrel logo. Perfect for jackets, bags, or lanyards.',
+    features: [
+      'Hard enamel finish',
+      'Nickel-plated metal',
+      'Butterfly clutch backing',
+      'Approximately 1.25 inches',
+    ],
+    category: ProductCategory.ACCESSORIES,
+    images: [
+      {
+        id: 'pin-front',
+        src: pin,
+        alt: 'Bull & Barrel Enamel Pin',
+        isDefault: true,
+      },
+    ],
+    colors: [colors[0], colors[3]], // Black and Brown
+    inventory: {
+      black: 50,
+      brown: 35,
+    },
+    relatedProductIds: ['bull-barrel-stickers', 'bull-barrel-hat'],
+  },
+  {
+    id: 'bull-barrel-poster',
+    name: 'Bull & Barrel Poster',
+    price: 24.99,
+    description:
+      'Collectible poster featuring our iconic Bull & Barrel collaboration with Glenfiddich.',
+    features: ['11x17', 'matte finish'],
+    category: ProductCategory.ACCESSORIES,
+    images: [
+      {
+        id: 'pin-front',
+        src: bullandbarrelPoster,
+        alt: 'Bull & Barrel Poster',
+        isDefault: true,
+      },
+    ],
+    colors: [colors[0], colors[3]], // Black and Brown
+    inventory: {
+      black: 50,
+      brown: 35,
+    },
+    relatedProductIds: ['bull-barrel-stickers', 'bull-barrel-hat'],
+  },
   // Glencairn Glass
   {
     id: 'bull-barrel-glencairn',
@@ -161,35 +215,5 @@ export const mockProducts: Product[] = [
     },
     isLimited: true,
     relatedProductIds: ['bull-barrel-glencairn', 'bull-barrel-coasters'],
-  },
-
-  // Enamel Pin
-  {
-    id: 'bull-barrel-pin',
-    name: 'Bull & Barrel Enamel Pin',
-    price: 9.99,
-    description:
-      'Collectible hard enamel pin featuring our iconic Bull & Barrel logo. Perfect for jackets, bags, or lanyards.',
-    features: [
-      'Hard enamel finish',
-      'Nickel-plated metal',
-      'Butterfly clutch backing',
-      'Approximately 1.25 inches',
-    ],
-    category: ProductCategory.ACCESSORIES,
-    images: [
-      {
-        id: 'pin-front',
-        src: 'https://placehold.co/600x600?text=Enamel+Pin',
-        alt: 'Bull & Barrel Enamel Pin',
-        isDefault: true,
-      },
-    ],
-    colors: [colors[0], colors[3]], // Black and Brown
-    inventory: {
-      black: 50,
-      brown: 35,
-    },
-    relatedProductIds: ['bull-barrel-stickers', 'bull-barrel-hat'],
   },
 ];
