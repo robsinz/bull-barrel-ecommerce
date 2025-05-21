@@ -95,11 +95,11 @@ export const mockProducts: Product[] = [
   },
   {
     id: 'bull-barrel-poster',
-    name: 'Bull & Barrel Poster',
+    name: 'Bull & Barrel Screen Print',
     price: 24.99,
     description:
-      'Collectible poster featuring our iconic Bull & Barrel collaboration with Glenfiddich.',
-    features: ['11x17', 'matte finish'],
+      'Collectible Screen Print featuring our iconic Bull & Barrel collaboration with Glenfiddich.',
+    features: ['11x17', 'Matte Finish'],
     category: ProductCategory.ACCESSORIES,
     images: [
       {
@@ -111,8 +111,7 @@ export const mockProducts: Product[] = [
     ],
     colors: [colors[0], colors[3]], // Black and Brown
     inventory: {
-      black: 50,
-      brown: 35,
+      default: 6,
     },
     relatedProductIds: ['bull-barrel-stickers', 'bull-barrel-hat'],
   },
