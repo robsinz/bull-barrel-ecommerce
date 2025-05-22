@@ -1,38 +1,70 @@
 .contact-page {
   max-width: 1400px;
-  margin: 200px auto 40px;
-  padding: 0 20px;
+  margin: 200px auto 0;
+  padding: 1rem;
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
 }
-.form-container {
+
+.form-side {
+  flex: 1;
   max-width: 600px;
-  margin: 2rem auto;
-  padding: 2rem;
+}
+
+.image-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.contact-page .success-message {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-container {
   background-color: #f8f8f8;
-  border: 8px;
+  padding: 2rem;
+  border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
 .form-container header {
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 0.5rem;
   color: #800000;
 }
 
 .form-container p {
-  font-size: 1.2rem;
   margin-bottom: 1.5rem;
   color: #666;
+  line-height: 1.5;
 }
 
-.form-container label {
+.full-name {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.name-field {
+  flex: 1;
+}
+
+.name-field label {
   display: block;
-  margin-top: 1rem;
   margin-bottom: 0.5rem;
-  font-size: 18px;
+  color: #333;
 }
 
-.form-container input,
-.form-container textarea {
+.name-field input {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ddd;
@@ -40,112 +72,86 @@
   font-size: 1rem;
 }
 
-.form-container textarea {
-  min-height: 150px;
-  resize: vertical;
-}
-
-.form-container input:focus,
-.form-container textarea:focus {
+.name-field input:focus {
   outline: none;
   border-color: #800000;
   box-shadow: 0 0 0 2px rgba(128, 0, 0, 0.1);
 }
 
-.error-message {
-  color: #d32f2f;
-  font-size: 1rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.5rem;
-}
-
-input:has(+ .error-message),
-textarea:has(+ .error-message) {
-  border: 1px solid #d32f2f;
-}
-
-.submit-button {
-  background-color: #800000;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
-  margin-top: 1.5rem;
-  width: 100%;
-}
-
-.submit-button:hover:not(:disabled) {
-  background-color: #600000;
-}
-
-.submit-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.success-message {
-  background-color: #f8e8e8e8;
-  border-left: 4px solid #800000;
-  padding: 1.5rem;
-  border-radius: 4px;
-  margin-top: 1rem;
-  animation: fadeIn 0.5s;
-  max-width: 600px;
-  margin: 2rem auto;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.success-message h3 {
-  color: #800000;
-  margin-bottom: 0.5rem;
-}
-
-.success-message p {
+.email-message-container {
   margin-bottom: 1rem;
+}
+
+.email-message-container label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
   color: #333;
 }
 
-.new-message-button {
-  background-color: #800000;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border: none;
+.email-message-container label:first-of-type {
+  margin-top: 0;
+}
+
+.email-message-container input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s;
-  margin-top: 1rem;
 }
 
-.new-message-button:hover {
-  background-color: #600000;
+.email-message-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  min-height: 150px;
+  resize: vertical;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.email-message-container input:focus,
+.email-message-container textarea:focus {
+  outline: none;
+  border-color: #800000;
+  box-shadow: 0 0 0 2px rgba(128, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
-  .form-container,
-  .success-message {
+  .contact-page {
+    flex-direction: column;
+    margin: 180px auto 0;
+    padding: 1rem;
+    gap: 0;
+  }
+
+  .image-side {
+    display: none;
+  }
+
+  .form-side {
+    max-width: none;
+    width: 100%;
+  }
+
+  .full-name {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-container {
     padding: 1.5rem;
-    margin: 1rem auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-page {
+    padding: 0.5rem;
+    margin: 170px auto 0;
   }
 
-  .form-container header {
-    font-size: 1.5rem;
-  }
-
-  .submit-button,
-  .new-message-button {
-    padding: 0.75rem 1rem;
+  .form-container {
+    padding: 1rem;
   }
 }

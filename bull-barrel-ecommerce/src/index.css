@@ -9,21 +9,6 @@
   --red-color: #800000;
 
   /* Typography */
-
-  /* 
- .boogaloo-regular {
-  font-family: "Boogaloo", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-} 
-
-.poppins-light {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-  */
-
   --heading-font: 'Peralta', serif;
   --body-font: 'Boogaloo', sans-serif, Helvetica, Arial, sans-serif;
   --thin-font: 'Poppins', sans-serif;

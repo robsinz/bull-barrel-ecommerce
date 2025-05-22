@@ -2,6 +2,7 @@ import { Product, ProductCategory, ProductColor, ProductSize } from '../product.
 import tshirtFrontImage from '../../assets/images/tshirtFrontImage.png';
 import pin from '../../assets/images/pin.jpg';
 import bullandbarrelPoster from '../../assets/images/bullandbarrelPoster.png';
+import glencairn from '../../assets/images/glencairn.jpg';
 
 // Common colors
 const colors: ProductColor[] = [
@@ -132,7 +133,7 @@ export const mockProducts: Product[] = [
     images: [
       {
         id: 'glencairn-front',
-        src: 'https://placehold.co/600x600?text=Glencairn+Glass',
+        src: glencairn,
         alt: 'Bull & Barrel Glencairn Glass',
         isDefault: true,
       },
