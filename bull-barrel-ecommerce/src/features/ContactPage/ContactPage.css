@@ -13,13 +13,13 @@
 }
 
 .form-container header {
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
   color: #800000;
 }
 
 .form-container p {
+  font-size: 1.2rem;
   margin-bottom: 1.5rem;
   color: #666;
 }
@@ -30,7 +30,41 @@
   margin-bottom: 0.5rem;
   font-size: 18px;
 }
-/* .submit-button {
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-container textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+  outline: none;
+  border-color: #800000;
+  box-shadow: 0 0 0 2px rgba(128, 0, 0, 0.1);
+}
+
+.error-message {
+  color: #d32f2f;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+input:has(+ .error-message),
+textarea:has(+ .error-message) {
+  border: 1px solid #d32f2f;
+}
+
+.submit-button {
   background-color: #800000;
   color: white;
   padding: 0.75rem 1.5rem;
@@ -40,7 +74,7 @@
   font-size: 1rem;
   transition: background-color 0.3s;
   margin-top: 1.5rem;
-  width: 25%;
+  width: 100%;
 }
 
 .submit-button:hover:not(:disabled) {
@@ -53,35 +87,29 @@
 }
 
 .success-message {
-  background-color: #e8f5e9;
-  border-left: 4px solid #4caf50;
+  background-color: #f8e8e8e8;
+  border-left: 4px solid #800000;
   padding: 1.5rem;
   border-radius: 4px;
   margin-top: 1rem;
   animation: fadeIn 0.5s;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .success-message h3 {
-  color: #2e7d32;
+  color: #800000;
   margin-bottom: 0.5rem;
 }
 
 .success-message p {
-  margin-bottom: 0;
+  margin-bottom: 1rem;
   color: #333;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .new-message-button {
-  background-color: #4caf50;
+  background-color: #800000;
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -93,5 +121,31 @@
 }
 
 .new-message-button:hover {
-  background-color: #388e3c;
-} */
+  background-color: #600000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-container,
+  .success-message {
+    padding: 1.5rem;
+    margin: 1rem auto;
+  }
+
+  .form-container header {
+    font-size: 1.5rem;
+  }
+
+  .submit-button,
+  .new-message-button {
+    padding: 0.75rem 1rem;
+  }
+}
