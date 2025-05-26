@@ -48,6 +48,7 @@ const ContactPage = () => {
                   <label className="first-name">First Name</label>
                   <input
                     id="firstName"
+                    className={errors.firstName ? 'error' : ''}
                     {...register('firstName', {
                       required: { value: true, message: 'First name is required' },
                       maxLength: { value: 20, message: 'First name cannot exceed 20 characters' },
@@ -59,6 +60,7 @@ const ContactPage = () => {
                   <label className="last-name">Last Name</label>
                   <input
                     id="lastName"
+                    className={errors.lastName ? 'error' : ''}
                     {...register('lastName', {
                       required: { value: true, message: 'Last name is required' },
                       maxLength: { value: 20, message: 'Last name cannot exceed 20 characters' },
@@ -73,6 +75,7 @@ const ContactPage = () => {
                 <input
                   type="email"
                   id="email"
+                  className={errors.email ? 'error' : ''}
                   {...register('email', {
                     required: { value: true, message: 'Email is required' },
                     pattern: {
@@ -86,6 +89,7 @@ const ContactPage = () => {
                 <label className="message">Message</label>
                 <textarea
                   id="textarea"
+                  className={errors.message ? 'error' : ''}
                   {...register('message', {
                     required: { value: true, message: 'Message is required' },
                     maxLength: { value: 100, message: 'Your message cannot exceed 100 characters' },
