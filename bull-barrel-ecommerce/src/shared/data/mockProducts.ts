@@ -67,8 +67,8 @@ export const mockProducts: Product[] = [
 
   // Enamel Pin
   {
-    id: 'bull-barrel-pin',
-    name: 'Bull & Barrel Enamel Pin',
+    id: 'bull-head-pin',
+    name: 'Bull Head Enamel Pin',
     price: 9.99,
     description:
       'Collectible hard enamel pin featuring our iconic Bull & Barrel logo. Perfect for jackets, bags, or lanyards.',
@@ -87,10 +87,8 @@ export const mockProducts: Product[] = [
         isDefault: true,
       },
     ],
-    colors: [colors[0], colors[3]], // Black and Brown
     inventory: {
-      black: 50,
-      brown: 35,
+      default: 20,
     },
     relatedProductIds: ['bull-barrel-stickers', 'bull-barrel-hat'],
   },
