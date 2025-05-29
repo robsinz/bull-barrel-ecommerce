@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ProductProvider } from './context/ProductContext';
+import { CheckoutProvider } from './context/CheckoutContext';
 import { CartProvider } from './context/CartContext';
 import ProductCatalog from './features/ProductCatalog';
 import ProductPage from './features/ProductPage';
@@ -7,6 +8,7 @@ import CartPage from './features/CartPage';
 import ContactPage from './features/ContactPage';
 import Header from './features/Header/Header';
 import './App.css';
+import CheckoutPage from './features/CheckoutPage';
 
 function App() {
   return (
@@ -21,6 +23,15 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route
+                path="/checkout"
+                element={
+                  <CheckoutProvider>
+                    <CheckoutPage />
+                  </CheckoutProvider>
+                }
+              />
+
               {/* need to handle route for unknown routes. wild card here */}
             </Routes>
           </div>

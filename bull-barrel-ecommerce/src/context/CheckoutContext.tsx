@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-// define what the data looks like
 interface CheckoutData {
   firstName: string;
   lastName: string;
@@ -19,6 +18,57 @@ interface CheckoutData {
 
 interface CheckoutContextType {
   checkoutData: CheckoutData;
-  updateCheckout: (data: CheckoutData) => void;
+  updateCheckout: (data: Partial<CheckoutData>) => void; // Partial<CheckoutData> means, any subset of CheckoutData properties
   resetCheckout: () => void;
 }
+
+const CheckoutContext = createContext<CheckoutContextType | undefined>(undefined);
+
+const userCheckoutData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  shipping: { address: '', address2: '', city: '', state: '', postalCode: '' },
+  payment: { ccNum: '', exp: '', secCode: '' },
+  billing: {
+    sameAsShipping: false,
+    address: '',
+    address2: '',
+    city: '',
+    state: '',
+    postalCode: '',
+  },
+};
+
+export const CheckoutProvider = ({ children }: { children: ReactNode }) => {
+  const [checkout, setCheckout] = useState(userCheckoutData);
+
+  const updateCheckout = (data: Partial<CheckoutData>) => {
+    setCheckout({ ...checkout, ...data });
+  };
+
+  const resetCheckout = () => {
+    setCheckout(userCheckoutData);
+  };
+
+  return (
+    <CheckoutContext.Provider
+      value={{
+        checkoutData: checkout,
+        updateCheckout,
+        resetCheckout,
+      }}
+    >
+      {children}
+    </CheckoutContext.Provider>
+  );
+};
+
+export const useCheckout = () => {
+  const context = useContext(CheckoutContext);
+
+  if (!context) {
+    throw new Error('useCheckout must be used within a CheckoutProvider');
+  }
+  return context;
+};
