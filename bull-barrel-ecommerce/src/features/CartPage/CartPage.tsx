@@ -1,10 +1,16 @@
-import { useProducts } from '../../context/ProductContext';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import './CartPage.css';
+import { Route } from 'react-router-dom';
 
 const CartPage = () => {
   const { cart, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart();
+
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
 
   return (
     <div className="main-cart-container">
@@ -83,7 +89,7 @@ const CartPage = () => {
           <p className="subtotal-label">Subtotal:</p>
           <p className="subtotal-amount">${getCartTotal().toFixed(2)}</p>
         </div>
-        <button className="checkout-button" onClick={() => alert('you checked out')}>
+        <button className="checkout-button" onClick={handleCheckout}>
           CHECKOUT
         </button>
       </div>
