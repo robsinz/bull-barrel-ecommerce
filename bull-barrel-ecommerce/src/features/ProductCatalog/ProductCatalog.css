@@ -8,7 +8,6 @@
   font-family: var(--heading-font);
   font-size: 2.5rem;
   padding-bottom: 0;
-  /* color: var(--red-color) */
   color: #800000;
   text-align: center;
 }
@@ -17,7 +16,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 40px;
-  border-bottom: 1px solid #800000;
+  border-bottom: 1px solid #333;
 }
 .category-filters button {
   background: none;
@@ -25,15 +24,16 @@
   font-family: var(--thin-font);
   font-size: 1rem;
   cursor: pointer;
-  color: #800000;
+  color: #333;
   padding-left: 6px;
   padding-right: 6px;
   padding-top: 20px;
   padding-bottom: 50px;
 }
 .category-filters button.active {
-  color: #333;
+  color: #800000;
 }
+
 .separator {
   margin: 0 10px;
   color: #ccc;

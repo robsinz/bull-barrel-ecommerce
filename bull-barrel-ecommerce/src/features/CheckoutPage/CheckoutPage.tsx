@@ -16,7 +16,8 @@ const CheckoutPage = () => {
           <EmailForm onNext={() => setCurrentStep(2)} />
         ) : (
           <div className="completed-step">
-            <p>Email: {checkoutData.email}</p>
+            <h3>Email: </h3>
+            <p>{checkoutData.email}</p>
             <button onClick={() => setCurrentStep(1)}>Edit</button>
           </div>
         )}
@@ -25,8 +26,12 @@ const CheckoutPage = () => {
             <ShippingForm onNext={() => setCurrentStep(3)} />
           ) : (
             <div className="completed-step">
-              <h3>Shipping Address</h3>
-              <p></p>
+              <h3>Shipping Address: </h3>
+              <p>{`${checkoutData.firstName} ${checkoutData.lastName}`}</p>
+              <p>{checkoutData.shipping.address}</p>
+              <p>
+                {`${checkoutData.shipping.city}, ${checkoutData.shipping.state} ${checkoutData.shipping.postalCode}`}
+              </p>
               <button onClick={() => setCurrentStep(2)}>Edit</button>
             </div>
           ))}

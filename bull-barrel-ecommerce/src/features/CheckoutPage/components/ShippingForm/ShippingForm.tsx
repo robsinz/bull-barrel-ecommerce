@@ -3,7 +3,6 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import './ShippingForm.css';
 
 interface ShippingFormData {
-  email: string;
   firstName: string;
   lastName: string;
   address: string;
@@ -19,31 +18,34 @@ interface ShippingFormProps {
 
 const ShippingForm = ({ onNext }: ShippingFormProps) => {
   const { checkoutData, updateCheckout } = useCheckout();
-  const { register, handleSubmit } = useForm<ShippingFormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm<ShippingFormData>({
+    mode: 'onChange',
     defaultValues: {
-      email: checkoutData.email,
-      // firstName: checkoutData.firstName,
-      // lastName: checkoutData.lastName,
-      // address: checkoutData.shipping.address,
-      // address2: checkoutData.shipping.address2,
-      // city: checkoutData.shipping.city,
-      // state: checkoutData.shipping.state,
-      // postalCode: checkoutData.shipping.postalCode,
+      firstName: checkoutData.firstName,
+      lastName: checkoutData.lastName,
+      address: checkoutData.shipping.address,
+      address2: checkoutData.shipping.address2,
+      city: checkoutData.shipping.city,
+      state: checkoutData.shipping.state,
+      postalCode: checkoutData.shipping.postalCode,
     },
   });
 
   const onSubmit: SubmitHandler<ShippingFormData> = (data) => {
     updateCheckout({
-      email: data.email,
-      // firstName: data.firstName,
-      // lastName: data.lastName,
-      // shipping: {
-      //   address: data.address,
-      //   address2: data.address2,
-      //   city: data.city,
-      //   state: data.state,
-      //   postalCode: data.postalCode,
-      // },
+      firstName: data.firstName,
+      lastName: data.lastName,
+      shipping: {
+        address: data.address,
+        address2: data.address2,
+        city: data.city,
+        state: data.state,
+        postalCode: data.postalCode,
+      },
     });
 
     onNext();
@@ -56,18 +58,33 @@ const ShippingForm = ({ onNext }: ShippingFormProps) => {
         <div className="name-row">
           <div className="first-name">
             <label htmlFor="firstName">FIRST NAME</label>
-            <input type="text" id="firstName" placeholder="First Name" {...register('firstName')} />
+            <input
+              type="text"
+              id="firstName"
+              placeholder="First Name"
+              {...register('firstName', { required: 'First Name is requried' })}
+            />
           </div>
 
           <div className="last-name">
             <label htmlFor="lastName">LAST NAME</label>
-            <input type="text" id="lastName" placeholder="Last Name" {...register('lastName')} />
+            <input
+              type="text"
+              id="lastName"
+              placeholder="Last Name"
+              {...register('lastName', { required: 'Last Name is requried' })}
+            />
           </div>
         </div>
 
-        <div className="address-section">
+        <div className="address-container">
           <label htmlFor="address">ADDRESS</label>
-          <input type="text" id="address" placeholder="Address 1" {...register('address')} />
+          <input
+            type="text"
+            id="address"
+            placeholder="Address 1"
+            {...register('address', { required: 'Address is requried' })}
+          />
         </div>
 
         <div className="address2-container">
@@ -80,14 +97,31 @@ const ShippingForm = ({ onNext }: ShippingFormProps) => {
         </div>
 
         <div className="city-state-zip">
-          <input type="text" id="postalCode" placeholder="Zip Code" {...register('postalCode')} />
+          <input
+            type="text"
+            id="postalCode"
+            placeholder="Zip Code"
+            {...register('postalCode', { required: 'Zip Code is requried' })}
+          />
 
-          <input type="text" id="city" placeholder="City" {...register('city')} />
+          <input
+            type="text"
+            id="city"
+            placeholder="City"
+            {...register('city', { required: 'City is requried' })}
+          />
 
-          <input type="text" id="state" placeholder="State" {...register('state')} />
+          <input
+            type="text"
+            id="state"
+            placeholder="State"
+            {...register('state', { required: 'State is requried' })}
+          />
         </div>
+        <button type="submit" disabled={!isValid}>
+          CONTINUE
+        </button>
       </div>
-      <button type="submit">CONTINUE</button>
     </form>
   );
 };
