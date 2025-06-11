@@ -5,7 +5,7 @@ interface CheckoutData {
   lastName: string;
   email: string;
   shipping: { address: string; address2: string; city: string; state: string; postalCode: string };
-  payment: { ccNum: string; exp: string; secCode: string };
+  payment: { ccNum: string; exp: string; cvv: string; nameOnCard: string };
   billing: {
     sameAsShipping: boolean;
     address: string;
@@ -29,7 +29,7 @@ const userCheckoutData = {
   lastName: '',
   email: '',
   shipping: { address: '', address2: '', city: '', state: '', postalCode: '' },
-  payment: { ccNum: '', exp: '', secCode: '' },
+  payment: { ccNum: '', exp: '', cvv: '', nameOnCard: '' },
   billing: {
     sameAsShipping: false,
     address: '',

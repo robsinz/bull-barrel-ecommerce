@@ -3,6 +3,7 @@ import { useCheckout } from '../../context/CheckoutContext';
 import CartSummary from './components/CartSummary';
 import EmailForm from './components/EmailForm/EmailForm';
 import ShippingForm from './components/ShippingForm/ShippingForm';
+import PaymentForm from './components/PaymentsForm/PaymentForm';
 import './CheckoutPage.css';
 
 const CheckoutPage = () => {
@@ -36,6 +37,22 @@ const CheckoutPage = () => {
               <p>{checkoutData.shipping.address}</p>
               <p>
                 {`${checkoutData.shipping.city}, ${checkoutData.shipping.state} ${checkoutData.shipping.postalCode}`}
+              </p>
+            </div>
+          ))}
+        {currentStep >= 3 &&
+          (currentStep === 3 ? (
+            <PaymentForm onNext={() => setCurrentStep(4)} />
+          ) : (
+            <div className="completed-step">
+              <div className="h3-button">
+                <h3>Payment Information: </h3>
+                <button onClick={() => setCurrentStep(3)}>Edit</button>
+              </div>
+              <p>{`${checkoutData.firstName} ${checkoutData.lastName}`}</p>
+              <p>{checkoutData.billing.address}</p>
+              <p>
+                {`${checkoutData.billing.city}, ${checkoutData.billing.state} ${checkoutData.billing.postalCode}`}
               </p>
             </div>
           ))}
