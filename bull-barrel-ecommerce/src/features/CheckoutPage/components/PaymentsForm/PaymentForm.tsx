@@ -75,12 +75,14 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
       <div className="payment-container">
         <div className="cc-container">
           <h3>Payment Information</h3>
-          <label htmlFor="">CARD NUMBER</label>
-          <input
-            type="text"
-            placeholder="1234 5678 9012 3456"
-            {...register('ccNum', { required: 'Card number is required' })}
-          />
+          <div className="cc-input-label">
+            <label htmlFor="">CARD NUMBER</label>
+            <input
+              type="text"
+              placeholder="1234 5678 9012 3456"
+              {...register('ccNum', { required: 'Card number is required' })}
+            />
+          </div>
         </div>
 
         <div className="expiry-sec-code">
@@ -107,14 +109,15 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
             {...register('nameOnCard', { required: 'Name on card is required' })}
           />
         </div>
-        <div className="checkbox-container">
+        <label className="checkbox-container">
           <input
             type="checkbox"
             checked={checkboxMarked}
             onChange={() => setCheckBoxMarked(!checkboxMarked)}
           />
-          <label htmlFor="">Billing address same as shipping</label>
-        </div>
+          <div className="checkbox-box"></div>
+          Billing address same as shipping
+        </label>
         {!checkboxMarked && (
           <div className="billing-container">
             <h3>Billing Address</h3>
