@@ -26,6 +26,7 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
     register,
     handleSubmit,
     formState: { isValid },
+    setValue,
   } = useForm<PaymentFormData>({
     mode: 'onChange',
   });
@@ -81,6 +82,23 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
               type="text"
               placeholder="1234 5678 9012 3456"
               {...register('ccNum', { required: 'Card number is required' })}
+              onChange={(e) => {
+                const eventValue = e.target.value;
+                const noSpaces = eventValue.replace(/\s+/g, '');
+
+                const limitedDigits = noSpaces.slice(0, 16);
+
+                const completeGroups = limitedDigits.match(/\d{4}/g) || [];
+                const remainder = limitedDigits.slice(completeGroups.length * 4);
+
+                const joinedGroups = completeGroups.join(' ');
+                const finalValue =
+                  remainder && completeGroups.length > 0
+                    ? joinedGroups + ' ' + remainder
+                    : joinedGroups + remainder;
+
+                setValue('ccNum', finalValue);
+              }}
             />
           </div>
         </div>
@@ -146,7 +164,7 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
                 />
               </div>
             </div>
-
+            <div></div>
             <div className="billing-address-container">
               <label htmlFor="address">ADDRESS</label>
               <input
@@ -198,7 +216,7 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
             </div>
           </div>
         )}
-        <div className="billing-container"></div>
+
         <button type="submit" disabled={!isValid}>
           CONTINUE
         </button>

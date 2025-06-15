@@ -108,7 +108,6 @@ export const mockProducts: Product[] = [
         isDefault: true,
       },
     ],
-    colors: [colors[0], colors[3]], // Black and Brown
     inventory: {
       default: 6,
     },

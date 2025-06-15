@@ -49,11 +49,9 @@ const CheckoutPage = () => {
                 <h3>Payment Information: </h3>
                 <button onClick={() => setCurrentStep(3)}>Edit</button>
               </div>
-              <p>{`${checkoutData.firstName} ${checkoutData.lastName}`}</p>
-              <p>{checkoutData.billing.address}</p>
-              <p>
-                {`${checkoutData.billing.city}, ${checkoutData.billing.state} ${checkoutData.billing.postalCode}`}
-              </p>
+              <p>{`XXXX-XXXX-XXXX-${checkoutData.payment.ccNum.slice(-4)}`}</p>
+              <p>{checkoutData.payment.exp}</p>
+              <p>{checkoutData.payment.nameOnCard}</p>
             </div>
           ))}
       </div>
