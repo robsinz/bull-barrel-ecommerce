@@ -39,6 +39,17 @@
   border-color: #800000;
   box-shadow: 0 0 0 2px rgba(128, 0, 0, 0.1);
 }
+
+.cc-container input.error {
+  border: 2px solid rgb(249, 26, 26);
+}
+
+.error-message {
+  font-size: 14px;
+  color: rgb(249, 26, 26);
+  padding-left: 1rem;
+  padding-top: 0.25rem;
+}
 .checkbox-container {
   display: flex;
   align-items: center;

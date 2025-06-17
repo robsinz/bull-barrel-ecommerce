@@ -25,8 +25,10 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
   const {
     register,
     handleSubmit,
-    formState: { isValid },
+    formState: { isValid, errors },
     setValue,
+    setError,
+    clearErrors,
   } = useForm<PaymentFormData>({
     mode: 'onChange',
   });
@@ -82,24 +84,29 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
               type="text"
               placeholder="1234 5678 9012 3456"
               {...register('ccNum', { required: 'Card number is required' })}
+              className={errors.ccNum ? 'error' : ''}
               onChange={(e) => {
                 const eventValue = e.target.value;
                 const noSpaces = eventValue.replace(/\s+/g, '');
 
-                const limitedDigits = noSpaces.slice(0, 16);
+                if (noSpaces.length > 16) {
+                  setError('ccNum', { message: 'Your card number is invalid' });
+                } else {
+                  clearErrors('ccNum');
+                }
 
+                const limitedDigits = noSpaces.slice(0, 16);
                 const completeGroups = limitedDigits.match(/\d{4}/g) || [];
                 const remainder = limitedDigits.slice(completeGroups.length * 4);
-
                 const joinedGroups = completeGroups.join(' ');
                 const finalValue =
                   remainder && completeGroups.length > 0
                     ? joinedGroups + ' ' + remainder
                     : joinedGroups + remainder;
-
                 setValue('ccNum', finalValue);
               }}
             />
+            {errors.ccNum ? <div className="error-message">{errors.ccNum?.message}</div> : null}
           </div>
         </div>
 
