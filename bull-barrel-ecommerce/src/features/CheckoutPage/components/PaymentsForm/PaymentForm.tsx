@@ -29,6 +29,7 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
     setValue,
     setError,
     clearErrors,
+    getValues,
   } = useForm<PaymentFormData>({
     mode: 'onChange',
   });
@@ -116,6 +117,17 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
             type="text"
             placeholder="MM/YY"
             {...register('exp', { required: 'Expiration date is required' })}
+            onChange={(e) => {
+              const eventValue = e.target.value;
+              const digitsOnly = eventValue.replace(/\D/g, '');
+
+              const limitedDigits = digitsOnly.slice(0, 4);
+              let formatted = limitedDigits;
+              if (limitedDigits.length >= 2) {
+                formatted = limitedDigits.slice(0, 2) + '/' + limitedDigits.slice(2);
+              }
+              setValue('exp', formatted);
+            }}
           />
 
           <label htmlFor="">SECURITY CODE</label>
