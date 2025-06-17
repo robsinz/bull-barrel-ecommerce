@@ -21,9 +21,9 @@ const ShippingForm = ({ onNext }: ShippingFormProps) => {
   const {
     register,
     handleSubmit,
-    formState: { isValid },
+    formState: { isValid, errors },
   } = useForm<ShippingFormData>({
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       firstName: checkoutData.firstName,
       lastName: checkoutData.lastName,
@@ -62,8 +62,9 @@ const ShippingForm = ({ onNext }: ShippingFormProps) => {
               type="text"
               id="firstName"
               placeholder="First Name"
-              {...register('firstName', { required: 'First Name is requried' })}
+              {...register('firstName', { required: 'First Name is required' })}
             />
+            {errors.firstName && <div className="error-message">{errors.firstName.message}</div>}
           </div>
 
           <div className="last-name">
@@ -72,8 +73,9 @@ const ShippingForm = ({ onNext }: ShippingFormProps) => {
               type="text"
               id="lastName"
               placeholder="Last Name"
-              {...register('lastName', { required: 'Last Name is requried' })}
+              {...register('lastName', { required: 'Last Name is required' })}
             />
+            {errors.lastName && <div className="error-message">{errors.lastName.message}</div>}
           </div>
         </div>
 
@@ -83,8 +85,9 @@ const ShippingForm = ({ onNext }: ShippingFormProps) => {
             type="text"
             id="address"
             placeholder="Address 1"
-            {...register('address', { required: 'Address is requried' })}
+            {...register('address', { required: 'Address is required' })}
           />
+          {errors.address && <div className="error-message">{errors.address.message}</div>}
         </div>
 
         <div className="address2-container">
@@ -97,26 +100,35 @@ const ShippingForm = ({ onNext }: ShippingFormProps) => {
         </div>
 
         <div className="city-state-zip">
-          <input
-            type="text"
-            id="postalCode"
-            placeholder="Zip Code"
-            {...register('postalCode', { required: 'Zip Code is requried' })}
-          />
+          <div className="zip-error-container">
+            <input
+              type="text"
+              id="postalCode"
+              placeholder="Zip Code"
+              {...register('postalCode', { required: 'Zip Code is required' })}
+            />
+            {errors.postalCode && <div className="error-message">{errors.postalCode.message}</div>}
+          </div>
 
-          <input
-            type="text"
-            id="city"
-            placeholder="City"
-            {...register('city', { required: 'City is requried' })}
-          />
+          <div className="city-error-container">
+            <input
+              type="text"
+              id="city"
+              placeholder="City"
+              {...register('city', { required: 'City is required' })}
+            />
+            {errors.city && <div className="error-message">{errors.city.message}</div>}
+          </div>
 
-          <input
-            type="text"
-            id="state"
-            placeholder="State"
-            {...register('state', { required: 'State is requried' })}
-          />
+          <div className="state-error-container">
+            <input
+              type="text"
+              id="state"
+              placeholder="State"
+              {...register('state', { required: 'State is required' })}
+            />
+            {errors.state && <div className="error-message">{errors.state.message}</div>}
+          </div>
         </div>
         <button type="submit" disabled={!isValid}>
           CONTINUE

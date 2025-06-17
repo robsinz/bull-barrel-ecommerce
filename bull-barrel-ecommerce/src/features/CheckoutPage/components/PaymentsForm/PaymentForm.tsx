@@ -27,11 +27,9 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
     handleSubmit,
     formState: { isValid, errors },
     setValue,
-    setError,
-    clearErrors,
     getValues,
   } = useForm<PaymentFormData>({
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   const { checkoutData, updateCheckout } = useCheckout();
@@ -89,17 +87,14 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
               onChange={(e) => {
                 const eventValue = e.target.value;
                 const noSpaces = eventValue.replace(/\s+/g, '');
+                const digitsOnly = noSpaces.replace(/\D/g, '');
 
-                if (noSpaces.length > 16) {
-                  setError('ccNum', { message: 'Your card number is invalid' });
-                } else {
-                  clearErrors('ccNum');
-                }
-
-                const limitedDigits = noSpaces.slice(0, 16);
+                const limitedDigits = digitsOnly.slice(0, 16);
                 const completeGroups = limitedDigits.match(/\d{4}/g) || [];
+
                 const remainder = limitedDigits.slice(completeGroups.length * 4);
                 const joinedGroups = completeGroups.join(' ');
+
                 const finalValue =
                   remainder && completeGroups.length > 0
                     ? joinedGroups + ' ' + remainder
@@ -107,7 +102,7 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
                 setValue('ccNum', finalValue);
               }}
             />
-            {errors.ccNum ? <div className="error-message">{errors.ccNum?.message}</div> : null}
+            {errors.ccNum && <div className="error-message">{errors.ccNum.message}</div>}
           </div>
         </div>
 
@@ -129,13 +124,24 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
               setValue('exp', formatted);
             }}
           />
-
+          {errors.exp && <div className="error-message">{errors.exp.message}</div>}
           <label htmlFor="">SECURITY CODE</label>
           <input
             type="text"
-            placeholder="CVC"
+            placeholder="CVV"
             {...register('cvv', { required: 'CVV is required' })}
+            onChange={(e) => {
+              const eventValue = e.target.value;
+              const digitsOnly = eventValue.replace(/\D/g, '');
+              const currentValue = getValues('ccNum');
+
+              const isAmex = currentValue.startsWith('34') || currentValue.startsWith('37');
+              const maxLength = isAmex ? 4 : 3;
+              const limitedDigits = digitsOnly.slice(0, maxLength);
+              setValue('cvv', limitedDigits);
+            }}
           />
+          {errors.cvv && <div className="error-message">{errors.cvv.message}</div>}
         </div>
 
         <div className="name-on-card">
@@ -145,6 +151,7 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
             placeholder="John Doe"
             {...register('nameOnCard', { required: 'Name on card is required' })}
           />
+          {errors.nameOnCard && <div className="error-message">{errors.nameOnCard.message}</div>}
         </div>
         <label className="checkbox-container">
           <input
@@ -166,7 +173,7 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
                   id="firstName"
                   placeholder="First Name"
                   {...register('billingFirstName', {
-                    required: !checkboxMarked ? 'First Name is requried' : false,
+                    required: !checkboxMarked ? 'First Name is required' : false,
                   })}
                 />
               </div>
@@ -178,7 +185,7 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
                   id="lastName"
                   placeholder="Last Name"
                   {...register('billingLastName', {
-                    required: !checkboxMarked ? 'Last Name is requried' : false,
+                    required: !checkboxMarked ? 'Last Name is required' : false,
                   })}
                 />
               </div>
@@ -191,9 +198,12 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
                 id="address"
                 placeholder="Address 1"
                 {...register('billingAddress', {
-                  required: !checkboxMarked ? 'Address is requried' : false,
+                  required: !checkboxMarked ? 'Address is required' : false,
                 })}
               />
+              {errors.billingAddress && (
+                <div className="error-message">{errors.billingAddress.message}</div>
+              )}
             </div>
 
             <div className="billing-address2-container">
@@ -211,27 +221,34 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
                 id="postalCode"
                 placeholder="Zip Code"
                 {...register('billingPostalCode', {
-                  required: !checkboxMarked ? 'Zip Code is requried' : false,
+                  required: !checkboxMarked ? 'Zip Code is required' : false,
                 })}
               />
-
+              {errors.billingPostalCode && (
+                <div className="error-message">{errors.billingPostalCode.message}</div>
+              )}
               <input
                 type="text"
                 id="city"
                 placeholder="City"
                 {...register('billingCity', {
-                  required: !checkboxMarked ? 'City is requried' : false,
+                  required: !checkboxMarked ? 'City is required' : false,
                 })}
               />
-
+              {errors.billingCity && (
+                <div className="error-message">{errors.billingCity.message}</div>
+              )}
               <input
                 type="text"
                 id="state"
                 placeholder="State"
                 {...register('billingState', {
-                  required: !checkboxMarked ? 'State is requried' : false,
+                  required: !checkboxMarked ? 'State is required' : false,
                 })}
               />
+              {errors.billingState && (
+                <div className="error-message">{errors.billingState.message}</div>
+              )}
             </div>
           </div>
         )}
