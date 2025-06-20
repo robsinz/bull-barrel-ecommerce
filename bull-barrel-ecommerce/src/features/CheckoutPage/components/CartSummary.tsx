@@ -24,6 +24,7 @@ const CartSummary = () => {
                 <p>${item.price}</p>
                 <div className="quantity-container">
                   <button
+                    disabled={item.quantity === 1}
                     onClick={() =>
                       updateQuantity({
                         productId: item.productId,
@@ -49,7 +50,9 @@ const CartSummary = () => {
                     +
                   </button>
                 </div>
-                <button onClick={() => removeFromCart}>Remove</button>
+                <button onClick={() => removeFromCart(item.productId, item.color, item.size)}>
+                  Remove
+                </button>
               </div>
             </div>
           ))
@@ -59,11 +62,21 @@ const CartSummary = () => {
           </div>
         )}
       </div>
-      <div>
-        <p>Subtotal</p>
-        <p>Tax</p>
-        <p>Shipping</p>
-        <button onClick={() => clearCart}>Clear Cart</button>
+      <div className="empty-cart-container">
+        {!cart.length ? (
+          <div>
+            <p>Subtotal: $0.00</p>
+            <p>Tax: $0.00</p>
+            <p>Shipping: $0.00</p>
+          </div>
+        ) : (
+          <div className="subtotal-tax-shipping-container">
+            <p>Subtotal</p>
+            <p>Tax</p>
+            <p>Shipping</p>
+            <button onClick={() => clearCart()}>Clear Cart</button>
+          </div>
+        )}
       </div>
     </div>
   );

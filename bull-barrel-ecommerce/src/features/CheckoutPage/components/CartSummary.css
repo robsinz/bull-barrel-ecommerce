@@ -68,3 +68,17 @@
   padding: 0;
   line-height: 1;
 }
+
+.quantity-container button:hover {
+  background-color: var(--border-color);
+}
+
+.quantity-container button:disabled {
+  opacity: 0.5;
+  cursor: default;
+  background-color: var(--light-grey);
+}
+
+.quantity-container button:disabled:hover {
+  background-color: var(--light-grey);
+}
