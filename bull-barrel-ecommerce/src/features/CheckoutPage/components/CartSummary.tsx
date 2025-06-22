@@ -2,12 +2,21 @@ import { useCart } from '../../../context/CartContext';
 import './CartSummary.css';
 
 const CartSummary = () => {
-  const { cart, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart();
+  const {
+    cart,
+    removeFromCart,
+    updateQuantity,
+    clearCart,
+    getCartTotal,
+    getTax,
+    getShippingRate,
+    getFullTotal,
+  } = useCart();
 
   return (
     <div className="summary-container">
       <div className="item-container">
-        {cart.length > 0 ? (
+        {cart.length > 0 &&
           cart.map((item) => (
             <div key={item.productId} className="sum-items-container">
               <img src={item.image} alt={item.name} className="sum-cart-image"></img>
@@ -50,33 +59,40 @@ const CartSummary = () => {
                     +
                   </button>
                 </div>
-                <button onClick={() => removeFromCart(item.productId, item.color, item.size)}>
+                <button
+                  className="remove-btn"
+                  onClick={() => removeFromCart(item.productId, item.color, item.size)}
+                >
                   Remove
                 </button>
               </div>
             </div>
-          ))
-        ) : (
-          <div>
-            <p>cart is empty</p>
+          ))}
+
+        <div className="subtotal-tax-shipping-container">
+          <div className="cart-summary__subtotal-container">
+            <p className="cart-summary__label-subtotal">Subtotal:</p>
+            <p>${getCartTotal().toFixed(2)}</p>
           </div>
-        )}
-      </div>
-      <div className="empty-cart-container">
-        {!cart.length ? (
-          <div>
-            <p>Subtotal: $0.00</p>
-            <p>Tax: $0.00</p>
-            <p>Shipping: $0.00</p>
+          <div className="cart-summary__tax-container">
+            <p className="cart-summary__label-tax">Tax:</p>
+            <p>${getTax().toFixed(2)}</p>
           </div>
-        ) : (
-          <div className="subtotal-tax-shipping-container">
-            <p>Subtotal</p>
-            <p>Tax</p>
-            <p>Shipping</p>
+          <div className="cart-summary__shipping-container">
+            <p className="cart-summary__label-shipping">Shipping:</p>
+            {getShippingRate() === 0 && (
+              <p className="cart-summary__free-shipping">Yah! Free Shipping</p>
+            )}
+            <p>${getShippingRate()}</p>
+          </div>
+          <div className="cart-summary__total-container">
+            <p className="cart-summary__label-total">Total:</p>
+            <p className="cart-summary__full-total">${getFullTotal().toFixed(2)}</p>
+          </div>
+          <div className="cart-summary__clear-cart-container">
             <button onClick={() => clearCart()}>Clear Cart</button>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

@@ -23,6 +23,9 @@ interface CartContextType {
   updateQuantity: (params: UpdateQuantityParams) => void;
   clearCart: () => void;
   getCartTotal: () => number;
+  getTax: () => number;
+  getShippingRate: () => number;
+  getFullTotal: () => number;
 }
 
 interface CartContextProps {
@@ -89,6 +92,29 @@ export const CartProvider = ({ children }: CartContextProps) => {
   const getCartTotal = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
+  const CA_TAX_RATE = 0.0825;
+
+  const getTax = () => {
+    const subtotal = getCartTotal();
+    return subtotal * CA_TAX_RATE;
+  };
+
+  const getShippingRate = () => {
+    const subtotal = getCartTotal();
+
+    if (subtotal === 0) return 0;
+    if (subtotal >= 50) return 0;
+    if (subtotal >= 25) return 6.99;
+    return 4.99;
+  };
+
+  const getFullTotal = () => {
+    const subTotal = getCartTotal();
+    const tax = getTax();
+    const shippingRate = getShippingRate();
+
+    return subTotal + tax + shippingRate;
+  };
 
   // Return the provider with values
   return (
@@ -100,6 +126,9 @@ export const CartProvider = ({ children }: CartContextProps) => {
         updateQuantity,
         clearCart,
         getCartTotal,
+        getTax,
+        getShippingRate,
+        getFullTotal,
       }}
     >
       {children}

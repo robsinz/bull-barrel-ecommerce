@@ -49,6 +49,9 @@ export interface Product {
 // Cart item interface
 export interface CartItem {
   productId: string;
+  name: string;
+  price: number;
+  image: string;
   quantity: number;
   color?: string;
   size?: string;

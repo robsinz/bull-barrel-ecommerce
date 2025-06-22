@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import './CartPage.css';
-import { Route } from 'react-router-dom';
+// import { Route } from 'react-router-dom';
 
 const CartPage = () => {
   const { cart, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart();
@@ -89,7 +89,7 @@ const CartPage = () => {
           <p className="subtotal-label">Subtotal:</p>
           <p className="subtotal-amount">${getCartTotal().toFixed(2)}</p>
         </div>
-        <button className="checkout-button" onClick={handleCheckout}>
+        <button className="checkout-button" disabled={!cart.length} onClick={handleCheckout}>
           CHECKOUT
         </button>
       </div>

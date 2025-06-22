@@ -212,9 +212,9 @@
   border-radius: 4px;
   font-size: 1rem;
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .new-message-button:hover {
-  cursor: pointer;
   background-color: #600000;
 }

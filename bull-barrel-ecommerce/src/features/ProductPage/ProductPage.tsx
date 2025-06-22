@@ -106,8 +106,6 @@ function ProductPage() {
     setTimeout(() => {
       setIsAddedToCart(false);
     }, 1000);
-
-    console.log('Added to cart:', cartItem);
   };
   return (
     <div className="product-page">
