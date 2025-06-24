@@ -23,7 +23,7 @@ const ShippingForm = ({ onNext }: ShippingFormProps) => {
     handleSubmit,
     formState: { isValid, errors },
   } = useForm<ShippingFormData>({
-    mode: 'onBlur',
+    mode: 'onChange',
     defaultValues: {
       firstName: checkoutData.firstName,
       lastName: checkoutData.lastName,

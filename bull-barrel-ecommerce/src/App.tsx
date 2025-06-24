@@ -9,6 +9,7 @@ import ContactPage from './features/ContactPage';
 import Header from './features/Header/Header';
 import './App.css';
 import CheckoutPage from './features/CheckoutPage';
+import AboutPage from './features/AboutPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="/shop" element={<ProductCatalog />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route
                 path="/checkout"

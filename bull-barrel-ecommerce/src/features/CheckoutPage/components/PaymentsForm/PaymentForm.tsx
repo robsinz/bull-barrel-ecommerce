@@ -29,7 +29,7 @@ const PaymentForm = ({ onNext }: PaymentFormProps) => {
     setValue,
     getValues,
   } = useForm<PaymentFormData>({
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
   const { checkoutData, updateCheckout } = useCheckout();
