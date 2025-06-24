@@ -4,7 +4,7 @@ const AboutPage = () => {
   return (
     <div className="about-page__main-container">
       <div className="hero">
-        <h1>Bull & Barrel</h1>
+        <h1>The Bull & Barrel Bar</h1>
         <p>A sophisticated whiskey sanctuary within Alexander's Steakhouse</p>
       </div>
 

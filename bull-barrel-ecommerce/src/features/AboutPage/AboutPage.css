@@ -1,6 +1,8 @@
+/* AboutPage.css */
+
 .about-page__main-container {
   max-width: 1000px;
-  margin: 150px auto 0;
+  margin: 150px auto;
   padding: 80px 40px;
 }
 
@@ -124,6 +126,30 @@
   font-style: italic;
   margin-bottom: 30px;
   line-height: 1.5;
+  position: relative;
+  padding: 40px 80px;
+}
+
+.closing blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-size: 5rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: serif;
+  line-height: 1;
+}
+
+.closing blockquote::after {
+  content: '"';
+  position: absolute;
+  bottom: -40px;
+  right: 20px;
+  font-size: 5rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: serif;
+  line-height: 1;
 }
 
 .closing .location {
