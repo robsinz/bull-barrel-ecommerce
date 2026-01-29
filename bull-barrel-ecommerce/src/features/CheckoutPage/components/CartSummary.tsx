@@ -80,7 +80,7 @@ const CartSummary = () => {
           </div>
           <div className="cart-summary__shipping-container">
             <p className="cart-summary__label-shipping">Shipping:</p>
-            {getShippingRate() === 0 && (
+            {getFullTotal() !== 0 && getShippingRate() === 0 && (
               <p className="cart-summary__free-shipping">Yah! Free Shipping</p>
             )}
             <p>${getShippingRate()}</p>

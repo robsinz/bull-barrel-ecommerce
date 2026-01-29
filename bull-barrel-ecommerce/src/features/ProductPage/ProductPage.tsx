@@ -102,6 +102,7 @@ function ProductPage() {
 
     addToCart(cartItem);
     setIsAddedToCart(true);
+    setQuantity(1);
 
     setTimeout(() => {
       setIsAddedToCart(false);
