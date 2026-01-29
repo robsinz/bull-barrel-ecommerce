@@ -3,6 +3,8 @@ import tshirtFrontImage from '../../assets/images/tshirtFrontImage.png';
 import pin from '../../assets/images/pin.jpg';
 import bullandbarrelPoster from '../../assets/images/bullandbarrelPoster.png';
 import glencairn from '../../assets/images/glencairn.jpg';
+import bourbon from '../../assets/images/BB_brbn.png';
+import rye from '../../assets/images/BB_rye.png';
 
 // Common colors
 const colors: ProductColor[] = [
@@ -149,14 +151,14 @@ export const mockProducts: Product[] = [
   // Limited Edition Barrel Pick Whiskey
   {
     id: 'bull-barrel-whiskey-pick-bourbon',
-    name: 'Bull & Barrel Select Bourbon',
+    name: 'Bull & Barrel Old Forester S.B.',
     price: 120.0,
     description:
       'Limited edition barrel pick, selected exclusively by our whiskey experts. Notes of caramel, vanilla, and oak with a smooth finish.',
     features: [
       'Single barrel selection',
-      'Bottled at 110 proof',
-      'Aged 8 years',
+      'Bottled at 128 proof',
+      'Aged 4 years',
       'Limited availability',
       'Exclusive to Bull & Barrel',
     ],
@@ -164,7 +166,8 @@ export const mockProducts: Product[] = [
     images: [
       {
         id: 'whiskey-front',
-        src: 'https://placehold.co/600x600?text=Whiskey+Bottle',
+        // src: 'https://placehold.co/600x600?text=Whiskey+Bottle',
+        src: bourbon,
         alt: 'Bull & Barrel Select Bourbon',
         isDefault: true,
       },
@@ -182,14 +185,14 @@ export const mockProducts: Product[] = [
   },
   {
     id: 'bull-barrel-whiskey-pick-rye',
-    name: 'Bull & Barrel Select Rye',
+    name: 'Bull & Barrel WhistlePig 10yr',
     price: 150.0,
     description:
       'Limited edition barrel pick, selected exclusively by our whiskey experts. Notes of caramel, vanilla, and oak with a smooth finish.',
     features: [
       'Single barrel selection',
-      'Bottled at 110 proof',
-      'Aged 8 years',
+      'Bottled at 109.7 proof',
+      'Aged 10 years',
       'Limited availability',
       'Exclusive to Bull & Barrel',
     ],
@@ -197,8 +200,8 @@ export const mockProducts: Product[] = [
     images: [
       {
         id: 'whiskey-front',
-        src: 'https://placehold.co/600x600?text=Whiskey+Bottle',
-        alt: 'Bull & Barrel Select Bourbon',
+        src: rye,
+        alt: 'Bull & Barrel Select Rye',
         isDefault: true,
       },
       {

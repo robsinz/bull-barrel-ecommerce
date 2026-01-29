@@ -15,7 +15,7 @@ export type ProductColor = {
 //Available product sizes
 export type ProductSize = {
   id: string;
-  name: string; // S, M, L, XL or numerical sizing
+  name: string; // S, M, L, XL
   inStock: boolean;
 };
 
