@@ -4,7 +4,7 @@ import './CartPage.css';
 // import { Route } from 'react-router-dom';
 
 const CartPage = () => {
-  const { cart, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart();
+  const { cart, removeFromCart, updateQuantity, getCartTotal } = useCart();
 
   const navigate = useNavigate();
 
