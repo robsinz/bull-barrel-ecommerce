@@ -1,54 +1,74 @@
-# React + TypeScript + Vite
+# Bull & Barrel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React e-commerce and membership site for Bull & Barrel — a whiskey club and bar program based at Alexander's Steakhouse in Pasadena, CA.
 
-Currently, two official plugins are available:
+**[Live Demo](https://bull-barrel-ecommerce.vercel.app)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### E-Commerce
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Merch store with cart and checkout flow
+- Multi-step checkout with email, shipping, and payment forms
+- Cart state managed via React Context
+- Product and checkout context for global state
+
+### Whiskey Club
+
+- Bull & Barrel membership program information
+- Event and tasting details
+- Contact page for inquiries
+
+### Technical Highlights
+
+- Feature-based architecture with shared utilities and components
+- Full TypeScript implementation
+- Responsive design across all screen sizes
+
+---
+
+## Tech Stack
+
+| Layer    | Technologies            |
+| -------- | ----------------------- |
+| Frontend | React, TypeScript, Vite |
+| State    | React Context           |
+| Styling  | CSS Modules             |
+
+---
+
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project Structure
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
 ```
+src/
+├── features/          # Page-level feature components
+│   ├── CartPage/
+│   ├── CheckoutPage/
+│   └── ContactPage/
+├── context/           # React Context providers (Cart, Product, Checkout)
+├── shared/            # Shared utilities and components
+├── assets/            # Images and static files
+├── App.tsx            # Root component and routing
+└── main.tsx           # Entry point
+```
+
+---
+
+_Built with React, TypeScript, and Vite_
